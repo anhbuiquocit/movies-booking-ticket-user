@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import "./@movie-ticket/styles/styles.css";
+import "./@movie-ticket/styles/main.css";
+import "./@movie-ticket/styles/main.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserLayout } from "./@movie-ticket/layout/userLayout";

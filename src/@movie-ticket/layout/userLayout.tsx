@@ -4,8 +4,10 @@ import { Header } from "../components/Header";
 import { Row, Col } from "antd";
 export const UserLayout = () => {
   return (
-    <div className="grid">
-      <Header />
+    <div className="app_container">
+      <div className="header">
+        <Header />
+      </div>
       <AppRouter />
     </div>
   );
