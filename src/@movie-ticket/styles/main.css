@@ -3,3 +3,6 @@
   background-color: rgba(10, 30, 94, 1);
   padding: 30px 0;
 }
+.d-block{
+  display: block !important;
+}

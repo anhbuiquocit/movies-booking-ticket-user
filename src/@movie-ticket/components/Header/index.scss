@@ -1,4 +1,5 @@
 $white-color: #fff;
+$black-color: #000;
 @keyframes opacityFade {
   from {
     opacity: 1;
@@ -13,10 +14,13 @@ $white-color: #fff;
   }
 }
 .header-container {
+  position: sticky;
+  z-index: 1;
   animation: opacityFade ease-in-out 1s;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
   .header_nav {
     display: flex;
     list-style: none;
@@ -31,6 +35,38 @@ $white-color: #fff;
         color: var(--white-color);
         font-size: 1.2rem;
         font-weight: 600;
+      }
+      position: relative;
+      .sub_nav {
+        margin-top: 15px;
+        display: none;
+        background-color: $white-color;
+        position: absolute;
+        list-style: none;
+        padding: 20px;
+        .sub_nav_item {
+          min-width: 150px;
+          min-height: 40px;
+          a {
+            color: $black-color;
+          }
+        }
+        &::before {
+          border-color: yellow blue red green;
+          border-style: solid;
+          border-width: 0px 200px 200px 200px;
+          height: 0px;
+          width: 0px;
+          position: relative;
+          top: 0;
+          left: 0;
+          z-index: 2;
+          background-color: #000;
+        }
+      }
+
+      &:hover .sub_nav {
+        display: block;
       }
     }
     .icon_white-color {
