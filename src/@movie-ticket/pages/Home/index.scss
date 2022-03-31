@@ -1,4 +1,5 @@
 $white-color: #fff;
+$black-color: #000;
 .banner-section {
   width: 100%;
   //   background-image: url("./../../assets/images/banner01.jpg");
@@ -76,6 +77,10 @@ $white-color: #fff;
       width: 98px;
       height: 3px;
       background: #31d7a9;
+    }
+    a {
+      text-decoration: none;
+      // color: $black-color;
     }
   }
   .movies-container {
