@@ -9,7 +9,6 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
-    "@mui/material": "^5.5.3",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
@@ -52,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "@mui/material": "^5.5.3",
     "@reduxjs/toolkit": "^1.8.0",
     "@types/react-router-dom": "^5.3.3",
     "antd": "^4.19.2",

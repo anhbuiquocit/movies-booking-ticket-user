@@ -1,0 +1,33 @@
+.container-501 {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  width: 80%;
+  left: 50%;
+  top: 50%;
+  .thumb-501 {
+    max-width: 966px;
+    margin: 0 auto 34px;
+    img {
+      width: 100%;
+    }
+  }
+  .title-501 {
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 40px;
+    font-size: 36px;
+    text-align: center;
+  }
+  .MuiButton-root {
+    color: #fff;
+    margin: 0 auto;
+    border-radius: 30px;
+    padding: 16px 45px;
+    background-image: -webkit-linear-gradient(
+      169deg,
+      #5560ff 17%,
+      #aa52a1 63%,
+      #ff4343 100%
+    );
+  }
+}
