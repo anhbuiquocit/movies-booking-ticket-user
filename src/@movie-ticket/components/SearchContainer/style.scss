@@ -1,0 +1,94 @@
+.search-container {
+  padding: 40px 30px;
+  background-image: url("./../../assets/images/ticket-bg01.jpg");
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .title {
+      h3 {
+        color: #31d7a9;
+        margin-bottom: 8px;
+      }
+    }
+    .tab-menu {
+      width: 50%;
+      ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        li {
+          background-color: #7d78ff;
+          padding: 5px;
+          border-radius: 25px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: calc(33.33% - 10px);
+          cursor: pointer;
+          a {
+            display: block;
+          }
+          span {
+            font-weight: 10px;
+            color: #fff;
+            padding-left: 10px;
+            text-transform: uppercase;
+          }
+        }
+        .active {
+          background-image: -webkit-linear-gradient(
+            169deg,
+            #ff4343 0%,
+            #aa52a1 37%,
+            #5560ff 83%
+          );
+          box-shadow: 0px 10px 15px 0px rgb(59 55 188 / 50%);
+        }
+      }
+    }
+  }
+  .tab-area {
+    margin-top: 50px;
+    padding: 30px;
+    box-shadow: 0px 5px 15px 0px rgb(44 41 157 / 50%);
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #000;
+    background-image: linear-gradient(0, rgba(92, 88, 88, 0) 20%, #0d0d1f);
+    form {
+      display: flex;
+      justify-content: space-between;
+      .form-group {
+        display: flex;
+        .thumb{
+            display: flex;
+            align-items: center;
+        }
+        .MuiFormLabel-root {
+          color: rgb(184, 178, 178) !important;
+        }
+        .MuiOutlinedInput-notchedOutline {
+          border-color: rgb(184, 178, 178);
+        }
+        .MuiOutlinedInput-input {
+          color: rgb(184, 178, 178);
+        }
+        &:nth-child(2), &:nth-child(3), &:nth-child(4){
+            .MuiOutlinedInput-notchedOutline {
+                border: none;
+            }
+          }
+      }
+      
+    }
+
+    &::before {
+      background-color: black;
+      opacity: 0.4;
+      width: 100%;
+      height: calc(100% + 1px);
+      top: 0;
+      left: 0;
+    }
+  }
+}

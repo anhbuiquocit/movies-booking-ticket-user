@@ -1,6 +1,7 @@
 import "./index.scss";
 import sourceImg from "./../../assets/images/banner02.jpg";
 import { MoviesContainer } from "../../components/MoviesContainer";
+import Search from "../../components/SearchContainer";
 export const Home = () => {
   return (
     <>
@@ -43,6 +44,7 @@ export const Home = () => {
           </div>
         </div>
       </section>
+      < Search/>
     </>
   );
 };
