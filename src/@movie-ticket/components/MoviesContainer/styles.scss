@@ -1,0 +1,15 @@
+.movies-container {
+    .movies-content {
+      padding: 0 20px;
+      h4 {
+        padding: 23px 0;
+        text-transform: capitalize;
+        border-bottom: 1px dashed #11326f;
+      }
+      .movies-rating-percent {
+        display: flex;
+        list-style: none;
+        justify-content: space-around;
+      }
+    }
+  }

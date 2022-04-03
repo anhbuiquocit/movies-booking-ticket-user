@@ -1,59 +1,5 @@
 $white-color: #fff;
 $black-color: #000;
-.banner-section {
-  // width: 100%;
-  //   background-image: url("./../../assets/images/banner01.jpg");
-  position: relative;
-  padding: 25px 0 316px;
-  width: 100%;
-  height: 80vh;
-  opacity: 0.9;
-  &::before {
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 18, 50, 1);
-    z-index: 2;
-    content: "";
-    position: absolute;
-  }
-  .banner-bg {
-    background-image: url("./../../assets/images/banner01.jpg");
-    // -webkit-filter: drop-shadow(0 0 5px black);
-    // filter: drop-shadow(0 0 5px black); /* FF~35 */
-    // filter: drop-shadow(0 0 0 5px black);
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    opacity: 1;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
-  .banner-content {
-    padding-top: 55px;
-    position: relative;
-    z-index: 3;
-    margin: 0 auto;
-    text-align: center;
-    max-width: 840px;
-    .title {
-      font-size: 4rem;
-      line-height: 1.5;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-      font-weight: 800;
-      color: $white-color;
-    }
-    p {
-      font-size: 1.8rem;
-      color: $white-color;
-    }
-  }
-}
 
 .movies-section {
   padding-top: 120px;
@@ -85,19 +31,20 @@ $black-color: #000;
       // color: $black-color;
     }
   }
-  .movies-container {
-    .movies-content {
-      padding: 0 20px;
-      h4 {
-        padding: 23px 0;
-        text-transform: capitalize;
-        border-bottom: 1px dashed #11326f;
-      }
-      .movies-rating-percent {
-        display: flex;
-        list-style: none;
-        justify-content: space-around;
-      }
-    }
-  }
+  
 }
+
+// @media screen and (min-width: 992px) {
+//   .search-ticket-section {
+//     margin-top: -150px;
+//     position: relative;
+//     z-index: 9;
+//     padding-top: 0 !important;
+//   }
+// }
+// .search-ticket-section {
+//   position: relative;
+//   margin-top: -150px;
+//   z-index: 9;
+//   padding-top: 0 !important;
+// }
