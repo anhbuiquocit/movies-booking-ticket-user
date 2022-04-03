@@ -1,3 +1,4 @@
+import React from "react";
 import "./index.scss";
 import sourceImg from "./../../assets/images/banner02.jpg";
 import { MoviesContainer } from "../../components/MoviesContainer";
@@ -44,7 +45,7 @@ export const Home = () => {
           </div>
         </div>
       </section>
-      < Search/>
+      {/* < Search/> */}
     </>
   );
 };
