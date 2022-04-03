@@ -14,7 +14,7 @@ $black-color: #000;
   }
 }
 .header-container {
-  position: sticky;
+  // position: sticky;
   z-index: 1;
   animation: opacityFade ease-in-out 1s;
   display: flex;
@@ -54,14 +54,16 @@ $black-color: #000;
         &::before {
           border-color: yellow blue red green;
           border-style: solid;
-          border-width: 0px 200px 200px 200px;
+          border-width: 0px 20px 20px 0px;
           height: 0px;
           width: 0px;
-          position: relative;
+          // position: relative;
           top: 0;
           left: 0;
           z-index: 2;
           background-color: #000;
+          content: "";
+          position: absolute;
         }
       }
 

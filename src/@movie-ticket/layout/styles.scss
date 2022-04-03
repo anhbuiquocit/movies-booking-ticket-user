@@ -1,0 +1,37 @@
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+.header-section {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.102);
+  padding: 21px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: block;
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: 0 0 6px 0 rgb(0 0 0 / 30%);
+    box-shadow: 0 0 6px 0 rgb(0 0 0 / 30%);
+    background-color: #f5f5f5;
+  }
+}
+.header-active {
+  background: #0a1e5e;
+  border: none;
+  animation-name: fadeInDown;
+  -webkit-animation-name: fadeInDown;
+  -moz-animation-name: fadeInDown;
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+}
