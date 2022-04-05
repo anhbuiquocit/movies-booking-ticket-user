@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import { Input, Button } from "antd";
-import { useForm, Controller } from "react-hook-form";
+// import { useForm, Controller } from "react-hook-form";
 import "./styles.scss";
 interface Props {
   onSubmit?: any;
@@ -9,12 +9,12 @@ type FormData = {
   email: string;
 };
 const NewLater = (props: Props) => {
-  const {
-    register,
-    setValue,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>({});
+  // const {
+  //   register,
+  //   setValue,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm<FormData>({});
   const onSubmit = (data: any) => {
     console.log("dataSubmit: ", data);
   };
@@ -25,10 +25,10 @@ const NewLater = (props: Props) => {
           <div className="newslater-wrapper">
             <h5 className="cate">SUBCRIBE TO BOLETO</h5>
             <h3 className="title">TO GET EXCLUSIVE BENIFITS</h3>
-            <form onSubmit={handleSubmit(onSubmit)} className="newlater-form">
+            {/* <form onSubmit={handleSubmit(onSubmit)} className="newlater-form"> */}
               <Input className="email-intput" size="large"/>
               <Button className="button-subcribe">Subcribe</Button>
-            </form>
+            {/* </form> */}
           </div>
         </div>
       </div>
