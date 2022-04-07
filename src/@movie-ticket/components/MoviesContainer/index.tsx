@@ -5,7 +5,7 @@ interface moviesProps {
   image?: string;
   name?: string;
   love?: string;
-  rate?: Int16Array;
+  rate?: string;
 }
 export const MoviesContainer: FC<moviesProps> = ({
   image,
@@ -14,12 +14,14 @@ export const MoviesContainer: FC<moviesProps> = ({
   rate,
 }): JSX.Element => {
   return (
-    <div className="movies-container">
-      <div className="img-container">
-        <img src="../../assets/images/movie01.jpg" alt="loading" />
+    <div className="movies-grid">
+      <div className="movie-thumb c-thumb">
+        <a href="#">
+          <img src={require(`../../assets/images/${image}`)} alt="loading" />
+        </a>
       </div>
-      <div className="movies-content">
-        <h4>{name}</h4>
+      <div className="movies-content bg-one">
+        <h5 className="title m-0">{name}</h5>
         <ul className="movies-rating-percent">
           <li>
             <i className="fa-solid fa-heart"></i>

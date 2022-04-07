@@ -7,11 +7,11 @@ import "./@movie-ticket/styles/main.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserLayout } from "./@movie-ticket/layout/userLayout";
-
+import { CustomProvider } from "./@movie-ticket/provider";
 ReactDOM.render(
-  <React.StrictMode>
+  <CustomProvider>
     <UserLayout />
-  </React.StrictMode>,
+  </CustomProvider>,
   document.getElementById("root")
 );
 

@@ -3,11 +3,9 @@ $black-color: #000;
 
 .movies-section {
   padding-top: 120px;
-  .artical-header {
+  .section-header-1 {
     display: flex;
-    justify-content: space-between;
-  }
-  .artical-header {
+    flex-wrap: wrap;
     margin-bottom: 30px;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
@@ -25,13 +23,14 @@ $black-color: #000;
       width: 98px;
       height: 3px;
       background: #31d7a9;
+      content: "";
+      position: absolute;
     }
     a {
       text-decoration: none;
       // color: $black-color;
     }
   }
-  
 }
 
 // @media screen and (min-width: 992px) {

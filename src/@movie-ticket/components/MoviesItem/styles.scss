@@ -1,0 +1,96 @@
+$full-width: 100%;
+$variable-1: 255px;
+$variable-2: 220px;
+
+.movie-list {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  .movie-thumb {
+    // width: 100%;
+    overflow: hidden;
+    border-radius: 7px 7px 0px 0px;
+  }
+  .movie-content {
+    .duration {
+      color: #31d7a9;
+      font-size: 14px;
+    }
+    .movie-tags {
+      margin-bottom: 3px;
+      a {
+        color: #dbe2fb;
+        margin-bottom: 5px;
+      }
+    }
+    .release {
+      color: #ffffff;
+      margin-bottom: 40px;
+    }
+    .movie-rating-percent {
+      margin-bottom: 27px;
+      li {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+    .book-area {
+      padding: 15px 0;
+      border-top: 1px solid #1e3251;
+      border-bottom: 1px solid #1e3251;
+      .book-ticket {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        margin-left: -20px;
+        margin-bottom: -15px;
+        .react-item {
+          margin-left: 20px;
+          margin-bottom: 15px;
+          .thumb {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            padding: 3px;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #032055;
+          }
+        }
+      }
+    }
+  }
+  a {
+    color: #ffffff;
+  }
+}
+@media screen and (min-width: 768px) {
+  .movie-list .movie-content {
+    // width: cacl(#{$full-width} - #{$variable-1});
+    width: 70%
+  }
+  .movie-list .movie-list .movie-thumb {
+    width: 255px;
+  }
+}
+@media screen and (min-width: 576px) {
+  .movie-list .movie-list .movie-thumb {
+    width: 220px;
+  }
+  .movie-list .movie-content .title {
+    margin-top: -5px;
+  }
+  h5 {
+    font-size: 24px;
+    margin-top: -8px;
+  }
+  .movie-list .movie-content {
+    width: cacl(#{$full-width} - #{$variable-2});
+    padding-left: 30px;
+  }
+}

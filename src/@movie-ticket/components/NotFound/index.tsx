@@ -7,7 +7,7 @@ import "./style.scss";
 
 const NotFoundPage = () => {
   return (
-    <>
+    <div className="handle-component-container">
       <div className="grid">
         <div className="container-404">
           <div className="thumb-404">
@@ -22,7 +22,7 @@ const NotFoundPage = () => {
           </Stack>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

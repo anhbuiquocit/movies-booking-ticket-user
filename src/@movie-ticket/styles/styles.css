@@ -71,6 +71,22 @@ html {
   width: 75%;
 }
 
+.grid__column-4 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 33.333333%;
+}
+
+.col-lg-4 {
+  -ms-flex: 0 0 33.333333%;
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
 /* Animation */
 
 @keyframes fadeIn {
@@ -209,4 +225,195 @@ html {
 
 .select-input__link:hover {
   color: var(--primary-color);
+}
+.padding-bottom {
+  padding-bottom: 120px;
+}
+.movie-thumb {
+  position: relative;
+}
+.a {
+  overflow: hidden;
+}
+.bg-one {
+  background-color: #032055;
+}
+.m-0 {
+  margin: 0 !important;
+}
+.c-thumb a {
+  display: block;
+}
+.c-thumb img {
+  width: 100%;
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.3s;
+}
+img {
+  border-style: none;
+}
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+.padding-top {
+  padding-top: 120px;
+}
+
+.widget-1 {
+  margin-bottom: 40px;
+}
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+.mb-lg-0,
+.my-lg-0 {
+  margin-bottom: 0 !important;
+}
+
+.section-header-1,
+.section-header-2,
+.section-header-2 .tab-menu,
+.footer-top,
+.footer-bottom-area,
+.footer-bottom .links,
+.social-icons,
+.header-wrapper,
+.details-banner-content .social-and-duration,
+.details-banner-content .social-and-duration .duration-area,
+.details-banner-content .social-share,
+.book-wrapper,
+.book-wrapper .left-side,
+.book-wrapper .left-side .item .item-header,
+.book-wrapper .left-side .item .item-header .thumb,
+.widget-1.widget-facility ul li a,
+.widget-1 .widget-header,
+.widget-1.widget-check .form-group,
+.widget-1.widget-tags ul,
+.booking-summery ul li .subtitle,
+.booking-summery ul li .info,
+.proceed-area .subtitle,
+.widget-tags ul,
+.widget-categories ul li a,
+.widget-post .widget-slider .item .content .meta-post,
+.widget-post .slider-nav,
+.movie-rating-percent,
+.movie-rating-percent li,
+.movie-rating-percent li .thumb,
+.movie-list,
+.movie-list .movie-content .movie-tags,
+.movie-list .movie-content .book-area .book-ticket,
+.movie-list .movie-content .book-area .book-ticket .react-item .thumb,
+.movie-list .movie-content .book-area .book-ticket .react-item,
+.movie-list .movie-content .book-area .book-ticket .react-item a,
+.ticket-tab-menu,
+.ticket-search-form,
+.ticket-search-form .form-group,
+.filter-main,
+.filter-main .left,
+.filter-main .left .item,
+.grid-button,
+.movie-details .summery-review .tab-menu,
+.movie-details .item .header,
+.movie-details .item .header .navigation,
+.movie-review-item,
+.movie-review-item .author,
+.seat-plan-wrapper li,
+.seat-plan-wrapper li .movie-name,
+.seat-plan-wrapper li .movie-schedule,
+.window-warning,
+.seat-area .seat-line,
+.seat-area .seat-line ul,
+.proceed-to-book,
+.page-title-area,
+.page-title-area .date-item,
+.grid--area .filter,
+.grid--area .grid-area,
+.grid--area .grid-item .grid-inner .grid-thumb .offer-tag,
+.grid--area .grid-item .grid-inner .grid-thumb .offer-remainder,
+.checkout-widget .payment-option,
+.checkout-widget .payment-option li a,
+.checkout-widget.checkout-card .payment-card-form,
+.checkout-widget.checkout-card .payment-card-form .form-group.check-group,
+.checkout-contact-form,
+.sponsor-tab .tab-menu,
+.sponsor-slider .sponsor-thumb,
+.stat-item,
+.countdown,
+.event-search-top,
+.event-search-top .right,
+.event-search-bottom,
+.event-search-bottom .contact-side,
+.event-search-bottom .contact-side .item,
+.ticket--area .ticket-item .hot,
+.event-cart,
+.ticket--item .hot,
+.speaker-wrapper,
+.speak-con-area,
+.speak-con-area .item,
+.phisophy-list li,
+.phisophy-list li .thumb,
+.client-section .owl-dots,
+.tour-content .list-tour li,
+.tour-content .list-tour li .thumb,
+.about-counter,
+.about-counter .counter-item .counter-content,
+.app-button,
+.counter--area,
+.account-area .account-form .form-group.checkgroup,
+.section-404,
+.contact-counter-item .contact-counter-content .counter-item,
+.contact-info,
+.contact-info .info-area,
+.contact-info .info-area .info-item,
+.post-item .post-content .post-header .meta-post,
+.post-item .post-content .entry-content,
+.post-item .post-content .entry-content .left,
+.post-item .post-content .entry-content .left .authors,
+.post-item.post-details .post-content,
+.post-item.post-details .post-content .content .tags-area,
+.post-item.post-details .post-content .content .tags-area .tags,
+.blog-author,
+.comment-area li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex !important;
+  -ms-flex-wrap: wrap !important;
+  flex-wrap: wrap !important;
+}
+
+.fa,
+.fas {
+  font-weight: 900;
+}
+.h-100 {
+  height: 100% !important;
+}
+.w-100 {
+  width: 100% !important;
+}
+a {
+  display: inline-block;
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.3s;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+.movie-rating-percent li {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-right: 20px;
+  width: auto;
+}
+.mr-auto,
+.mx-auto {
+  margin-right: auto !important;
 }

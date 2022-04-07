@@ -18,12 +18,6 @@ export const UserLayout = () => {
       <div className="footer">
         <Footer />
       </div>
-      {/* <div className="section-error">
-        <NotFoundPage />
-      </div> */}
-      {/* <div className="section-error height-100">
-        <NotImplemented />
-      </div> */}
     </div>
   );
 };

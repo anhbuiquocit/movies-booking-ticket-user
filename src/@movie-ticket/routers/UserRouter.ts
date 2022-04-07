@@ -2,6 +2,8 @@ import { PageListFilm } from "./../pages/ListFilm/index";
 import { PageTest } from "../pages/PageTest";
 import Router from "./router";
 import { Home } from "../pages/Home";
+import Loading from "../components/Loading";
+import NotFoundPage from "../components/NotFound";
 
 const userRouters = [
   {
@@ -21,6 +23,12 @@ const userRouters = [
     exact: true,
     isPrivate: false,
     component: PageListFilm,
+  },
+  {
+    path: "/test",
+    exact: true,
+    isPrivate: false,
+    component: NotFoundPage,
   },
 ];
 export default userRouters;
