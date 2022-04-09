@@ -1,4 +1,7 @@
 /*Account-Section Starts Here*/
+.account-section{
+  background-image: url("../../assets/images/account-bg.jpg");
+}
 .account-area {
   width: 100%;
   max-width: 540px;

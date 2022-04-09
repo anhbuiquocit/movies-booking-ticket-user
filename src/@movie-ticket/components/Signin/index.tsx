@@ -1,16 +1,14 @@
 import React from "react";
 import "./style.css";
-const SignUp = () => {
+const SignIn = () => {
   return (
-    <section
-      className="account-section bg_img"
-    >
+    <section className="account-section bg_img">
       <div className="container">
         <div className="padding-top padding-bottom">
           <div className="account-area">
             <div className="section-header-3">
-              <span className="cate">welcome</span>
-              <h2 className="title">to Boleto </h2>
+              <span className="cate">Hello</span>
+              <h2 className="title">WELCOME BACK </h2>
             </div>
             <form className="account-form">
               <div className="form-group">
@@ -35,30 +33,27 @@ const SignUp = () => {
                   required
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="pass2">
-                  Confirm Password<span>*</span>
-                </label>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  id="pass2"
-                  required
-                />
+              <div
+                className="form-group checkgroup"
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <div style={{ display: "flex" }}>
+                  <input type="checkbox" id="bal" required checked />
+                  <label htmlFor="bal">Remember Password</label>
+                </div>
+                <div>
+                  <label>Forget Password</label>
+                </div>
               </div>
-              <div className="form-group checkgroup">
-                <input type="checkbox" id="bal" required checked />
-                <label htmlFor="bal">
-                  I agree to the <a href="#0">Terms, Privacy Policy</a> and{" "}
-                  <a href="#0">Fees</a>
-                </label>
-              </div>
-              <div className="form-group text-center" style={{display: "flex"}}>
+              <div
+                className="form-group text-center"
+                style={{ display: "flex" }}
+              >
                 <input type="submit" value="Sign Up" />
               </div>
             </form>
             <div className="option">
-              Already have an account? <a href="sign-in.html">Login</a>
+              Don't have an account? <a href="sign-in.html">Sign up now</a>
             </div>
             <div className="or">
               <span>Or</span>
@@ -87,4 +82,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;
