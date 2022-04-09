@@ -8,12 +8,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { UserLayout } from "./@movie-ticket/layout/userLayout";
 import { CustomProvider } from "./@movie-ticket/provider";
-ReactDOM.render(
-  <CustomProvider>
-    <UserLayout />
-  </CustomProvider>,
-  document.getElementById("root")
-);
+ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

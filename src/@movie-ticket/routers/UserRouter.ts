@@ -10,24 +10,28 @@ const userRouters = [
     path: Router.pageTest,
     exact: true,
     isPrivate: false,
+    notProtected: false,
     component: PageTest,
   },
   {
     path: Router.home,
     exact: true,
     isPrivate: false,
+    notProtected: false,
     component: Home,
   },
   {
     path: Router.pageListFilm,
     exact: true,
     isPrivate: false,
+    notProtected: false,
     component: PageListFilm,
   },
   {
     path: "/test",
     exact: true,
     isPrivate: false,
+    notProtected: true,
     component: NotFoundPage,
   },
 ];
