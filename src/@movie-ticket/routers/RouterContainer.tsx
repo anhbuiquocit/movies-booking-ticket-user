@@ -16,7 +16,7 @@ const RouterContainer = () => (
             path={path}
             exact={exact}
             component={component}
-            redirect={Routers.userLogin}
+            redirect={Routers.userSignin}
           />
         );
       })}

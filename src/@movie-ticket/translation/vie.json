@@ -1,0 +1,10 @@
+{
+  "main": {
+    "pageSignin": {
+      "username": "Tên đăng nhập",
+      "password": "Mật khẩu",
+      "signin": "Đăng nhập"
+    },
+    "confirmMessage": "Bạn chắc chắn chứ?"
+  }
+}

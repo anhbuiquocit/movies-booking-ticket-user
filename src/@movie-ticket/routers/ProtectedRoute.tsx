@@ -18,7 +18,7 @@ const ProtectedRoute = ({
       {...rest}
       render={(routerProps) => {
         const props = { ...rest, ...routerProps };
-        if (redirect === Routers.userLogin) {
+        if (redirect === Routers.userSignin) {
           return (
             <UserLayout>
               <Component {...props} />

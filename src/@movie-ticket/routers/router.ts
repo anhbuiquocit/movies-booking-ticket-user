@@ -5,7 +5,8 @@ const routers = {
   pageTest: "/page_test",
   pageListFilm: "/list_film",
   adminLogin: "/admin/login",
-  userLogin: "/user/login",
+  userSignup: "/user/signup",
+  userSignin: "/user/signin",
 };
 
 export default routers;

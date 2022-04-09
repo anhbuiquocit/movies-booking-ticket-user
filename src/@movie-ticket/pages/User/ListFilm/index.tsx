@@ -1,10 +1,10 @@
 import React, { FC, useState } from "react";
-import { Banner } from "../../components/Banner";
-import imageBanner02 from "../../assets/images/banner02.jpg";
-import Search from "../../components/SearchContainer";
+import { Banner } from "@movie-ticket/components/Banner";
+import imageBanner02 from "@movie-ticket/assets/images/banner02.jpg";
+import Search from "@movie-ticket/components/SearchContainer";
 import Autocomplete from "@mui/material/Autocomplete";
 import { TextField } from "@mui/material";
-import { MoviesItem } from "../../components/MoviesItem";
+import { MoviesItem } from "@movie-ticket/components/MoviesItem";
 export const PageListFilm: FC = (props): JSX.Element => {
   // const [numberPerPage, setNumberPerPage] = useState([12, 24, 48 92])
   const valueItemPerPage = [
@@ -40,7 +40,7 @@ export const PageListFilm: FC = (props): JSX.Element => {
               <div className="widget-1 widget-banner">
                 <div className="widget-1-body">
                   <a href="#">
-                    <img src={require("../../assets/images/adv.jpg")} alt="" />
+                    <img src={require("@movie-ticket/assets/images/adv.jpg")} alt="" />
                   </a>
                 </div>
               </div>

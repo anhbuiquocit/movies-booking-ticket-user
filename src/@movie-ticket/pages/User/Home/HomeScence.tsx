@@ -1,10 +1,9 @@
 import React, { FC } from "react";
 import "./index.scss";
-import sourceImg from "./../../assets/images/banner02.jpg";
-import { MoviesContainer } from "../../components/MoviesContainer";
-import imageTest from "../../assets/images/banner01.jpg";
-import { Banner } from "../../components/Banner";
-import Search from "../../components/SearchContainer";
+import MoviesContainer from "@movie-ticket/components/MoviesContainer";
+import imageTest from "@movie-ticket/assets/images/banner01.jpg";
+import { Banner } from "@movie-ticket/components/Banner";
+import Search from "@movie-ticket/components/SearchContainer";
 export const HomeScence: FC = (): JSX.Element => {
   return (
     <>
@@ -24,7 +23,7 @@ export const HomeScence: FC = (): JSX.Element => {
             <div className="grid__column-3">
               <div className="widget-banner">
                 <a href="#">
-                  <img src={require("../../assets/images/adv.jpg")} alt="" />
+                  <img src={require("@movie-ticket/assets/images/adv.jpg")} alt="" />
                 </a>
               </div>
             </div>

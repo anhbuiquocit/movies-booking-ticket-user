@@ -7,7 +7,7 @@ interface moviesProps {
   love?: string;
   rate?: string;
 }
-export const MoviesContainer: FC<moviesProps> = ({
+const MoviesContainer: FC<moviesProps> = ({
   image,
   name,
   love,
@@ -36,3 +36,4 @@ export const MoviesContainer: FC<moviesProps> = ({
     </div>
   );
 };
+export default MoviesContainer;
