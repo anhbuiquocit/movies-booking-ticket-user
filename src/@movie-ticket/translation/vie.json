@@ -5,6 +5,30 @@
       "password": "Mật khẩu",
       "signin": "Đăng nhập"
     },
-    "confirmMessage": "Bạn chắc chắn chứ?"
+    "pageSignup": {
+      "username": "Tên đăng nhập",
+      "password": "Mật khẩu",
+      "confirmPassword": "Xác nhận mật khẩu",
+      "firstname": "Họ",
+      "lastname": "Tên",
+      "birthday": "Ngày sinh",
+      "address": "Địa chỉ",
+      "email": "Email",
+      "button": {
+        "signup": "Đăng ký"
+      },
+      "placeHolder": {
+        "username": "Nhập tên đăng nhập",
+        "password": "Hãy nhập mật khẩu",
+        "confirmPassword": "Nhập mật khẩu",
+        "firstname": "Nhập họ của bạn",
+        "lastname": "Nhập tên của bạn",
+        "email": "Nhập địa chỉ email"
+      }
+    },
+    "confirmMessage": "Bạn chắc chắn chứ?",
+    "validation": {
+      "required": "Không được để trống"
+    }
   }
 }

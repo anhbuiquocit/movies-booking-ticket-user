@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { CustomProvider } from "./@movie-ticket/provider";
 import RouterContainer from "./@movie-ticket/routers/RouterContainer";

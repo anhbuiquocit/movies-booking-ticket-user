@@ -3,7 +3,8 @@ import { PageTest } from "@movie-ticket/pages/PageTest";
 import Router from "./router";
 import { Home } from "../pages/User/Home";
 import NotFoundPage from "@movie-ticket/components/NotFound";
-import Signin from "@movie-ticket/pages/User/Signin/SigninScence";
+import Signin from "@movie-ticket/pages/User/Signin";
+import Signup from "@movie-ticket/pages/User/Signup/Signup";
 
 const userRouters = [
   {
@@ -40,6 +41,13 @@ const userRouters = [
     isPrivate: false,
     notProtected: true,
     component: Signin,
+  },
+  {
+    path: Router.userSignup,
+    exact: true,
+    isPrivate: false,
+    notProtected: true,
+    component: Signup,
   },
 ];
 export default userRouters;

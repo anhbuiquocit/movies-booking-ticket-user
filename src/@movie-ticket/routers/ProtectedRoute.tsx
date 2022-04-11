@@ -1,5 +1,6 @@
 import { Redirect, Route } from "react-router-dom";
 import { UserLayout } from "../layout/userLayout";
+import middleware from "@movie-ticket/middleware";
 import Routers from "./router";
 interface ProtectedRoute {
   component: any;

@@ -486,3 +486,8 @@ ul {
 .padding-bottom {
   padding-bottom: 80px;
 }
+
+.notification-type-info {
+  width: 200px;
+  background-color: #1890ff;
+}

@@ -1,71 +1,89 @@
-import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
-import { Button } from "antd";
-import { Form, Modal } from "antd";
-import { FormikProps } from "formik";
-import i18n from "@movie-ticket/translation";
-import React from "react";
-
-interface MyConfirmationProps extends FormikProps<any> {
-  title?: string;
-  yes?: string;
-  confirmationMessage?: string | React.ReactNode;
-  children?: any;
+import { Checkbox } from "antd";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import React, { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
+import { string } from "yup";
+interface ConfirmationModalProps {
+  values?: any;
+  isSubmitting?: any;
+  handleSubmit?: any;
+  handleNoClick?: any;
+  setFieldValue?: any;
+  confirmationMessage?: string;
+  children?: ReactNode;
   visibleKey?: string;
-  width?: string;
+  yes?: string;
+  no?: string;
 }
-
 const ConfirmationModal = ({
-  title = "確認",
-  yes = "Có",
-  values = {},
+  values,
   isSubmitting,
   handleSubmit,
+  handleNoClick,
   setFieldValue,
-  confirmationMessage = i18n.t("main.confirmMessage"),
+  confirmationMessage,
   children,
   visibleKey = "confirm",
-  width = "50vw",
-}: MyConfirmationProps) => {
+  yes = "Đồng ý",
+  no = "Hủy bỏ",
+}: ConfirmationModalProps) => {
+  // const { i18n } = useTranslation();
+  // const noClick = () => setFieldValue(visibleKey, false);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+    setFieldValue(visibleKey, true);
+  };
+
+  const handleClose = () => {
+    setFieldValue(visibleKey, false);
+  };
   return (
-    <Modal
-      title={title}
-      visible={values[visibleKey]}
-      centered
-      footer="　"
-      closable={!isSubmitting}
-      onCancel={() => setFieldValue(visibleKey, false)}
-      width={width}
-      destroyOnClose
-    >
-      {children}
-      {confirmationMessage}
-      <div className="modal-footer">
-        <Form>
+    <div>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
+        Slide in alert dialog
+      </Button> */}
+      <Dialog
+        open={values[visibleKey]}
+        // TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle>{"XÁC NHẬN"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            {/* Bạn chắc chắn chứ? */}
+            {confirmationMessage}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
           <Button
-            type="primary"
-            loading={isSubmitting}
+            onClick={() => {
+              // handleClose();
+              // setFieldValue(values[visibleKey], false);
+              handleClose();
+            }}
+          >
+            {no}
+          </Button>
+          <Button
+            type="submit"
+            onLoad={isSubmitting}
             disabled={isSubmitting}
-            onClick={() => handleSubmit()}
-            icon={<CheckOutlined />}
-            htmlType="submit"
-            className="modal-footer-button"
-            id="confirmationYes"
-            data-testid="confirmationYes"
+            onClick={handleSubmit}
           >
             {yes}
           </Button>
-          <Button
-            icon={<CloseOutlined />}
-            onClick={() => setFieldValue(visibleKey, false)}
-            disabled={isSubmitting}
-            className="modal-footer-button"
-            id="confirmationNo"
-          >
-            いいえ
-          </Button>
-        </Form>
-      </div>
-    </Modal>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
 };
 
