@@ -7,6 +7,8 @@ const routers = {
   adminLogin: "/admin/login",
   userSignup: "/user/signup",
   userSignin: "/user/signin",
+  detailFilm: "/film/detail/:id",
+  testModal: "/modal",
 };
 
 export default routers;

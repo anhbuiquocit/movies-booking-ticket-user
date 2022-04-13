@@ -16,3 +16,18 @@ export const GET_LIST_FILM = gql`
     }
   }
 `;
+
+export const FILM_CONNECTION = gql`
+  query FilmConnection($where: FilmWhereInput) {
+    films(where: $where) {
+      trailler
+      name
+      description
+      director
+      actor
+      time
+      image
+      id
+    }
+  }
+`;

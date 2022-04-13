@@ -32,7 +32,6 @@ export const CustomProvider: FC<PropsType> = ({ children }): JSX.Element => {
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
   });
-  console.log("client: ", client);
   return (
     <ReduxProvider store={store}>
       <ApolloProvider client={client}>{children}</ApolloProvider>

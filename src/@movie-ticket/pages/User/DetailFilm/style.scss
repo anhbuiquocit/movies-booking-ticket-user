@@ -1,8 +1,12 @@
+$color-1: #fff;
 .bg_img {
-  background-image: url("../../assets/images/banner03.jpg");
+  // background-image: url("../../../assets/images/banner03.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+}
+.sub-title {
+  color: $color-1;
 }
 .details-banner {
   padding-top: 235px;
@@ -71,6 +75,10 @@
       }
     }
 
+    .title {
+      color: $color-1;
+    }
+
     .details-banner-content {
       @media (min-width: 576px) {
         .title {
@@ -120,6 +128,7 @@
           box-shadow: 0px 10px 15px 0px rgba(59, 55, 188, 0.5);
         }
       }
+
       .social-and-duration {
         display: flex;
         -webkit-box-pack: justify;

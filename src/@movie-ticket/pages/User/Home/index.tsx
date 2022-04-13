@@ -1,19 +1,23 @@
 import React, { FC } from "react";
 import { HomeScence } from "./HomeScence";
 import { useQuery } from "@apollo/client";
-import { GET_LIST_FILM } from "./Home.graphql";
-import Loading from "../../../components/Loading";
+import Loading from "@movie-ticket/components/Loading";
+import Error from "@movie-ticket/components/Error";
+import { FILM_CONNECTION } from "./Home.graphql";
 export const Home: FC = (): JSX.Element => {
-  const { loading, error, data } = useQuery(GET_LIST_FILM, {
+  const { loading, error, data } = useQuery(FILM_CONNECTION, {
     variables: {
-      filmInput: {
-        deletedAt: null,
+      where: {
+        deletedAt: {
+          equals: null,
+        },
       },
     },
   });
   if (loading) return <Loading />;
-  console.log("processEnv: ", process.env);
+  if (error) return <Error />;
   console.log("fffff");
   console.log("dataaa: ", data);
-  return <HomeScence />;
+  const { films } = data;
+  return <HomeScence films={films} />;
 };

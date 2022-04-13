@@ -5,6 +5,8 @@ import { Home } from "../pages/User/Home";
 import NotFoundPage from "@movie-ticket/components/NotFound";
 import Signin from "@movie-ticket/pages/User/Signin";
 import Signup from "@movie-ticket/pages/User/Signup/Signup";
+import DetailFilm from "@movie-ticket/pages/User/DetailFilm";
+import Modal from "@movie-ticket/components/Modal";
 
 const userRouters = [
   {
@@ -48,6 +50,20 @@ const userRouters = [
     isPrivate: false,
     notProtected: true,
     component: Signup,
+  },
+  {
+    path: Router.detailFilm,
+    exact: true,
+    isPrivate: false,
+    notProtected: false,
+    component: DetailFilm,
+  },
+  {
+    path: Router.testModal,
+    exact: true,
+    isPrivate: false,
+    notProtected: false,
+    component: Modal,
   },
 ];
 export default userRouters;

@@ -26,6 +26,10 @@
         "email": "Nhập địa chỉ email"
       }
     },
+    "film": {
+      "description": "Mô tả",
+      "cast": "Diễn viên"
+    },
     "confirmMessage": "Bạn chắc chắn chứ?",
     "validation": {
       "required": "Không được để trống"

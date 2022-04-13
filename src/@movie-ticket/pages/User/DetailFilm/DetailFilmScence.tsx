@@ -1,25 +1,40 @@
-import React from "react";
-import "./style.scss";
-import thumb from "../../assets/images/venus.jpg";
-import videoButon from "../../assets/images/video-button.png";
-import cake from "../../assets/images/cake2.png";
-import offer01 from "../../assets/images/offer01.png";
-import offer02 from "../../assets/images/offer02.png";
-import offer03 from "../../assets/images/offer03.png";
-import tomato from "../../assets/images/tomato2.png";
-import moviedetail1 from "../../assets/images/movie-details01.jpg";
-import moviedetail2 from "../../assets/images/movie-details02.jpg";
-import moviedetail3 from "../../assets/images/movie-details03.jpg";
-import banner from "../../assets/images/banner01 (1).jpg";
-import cast from "../../assets/images/cast02.jpg";
-const DetailFilm = () => {
+import React, { FC } from "react";
+import thumb from "@movie-ticket/assets/images/venus.jpg";
+import videoButon from "@movie-ticket/assets/images/video-button.png";
+import cake from "@movie-ticket/assets/images/cake2.png";
+import offer01 from "@movie-ticket/assets/images/offer01.png";
+import offer02 from "@movie-ticket/assets/images/offer02.png";
+import offer03 from "@movie-ticket/assets/images/offer03.png";
+import tomato from "@movie-ticket/assets/images/tomato2.png";
+import moviedetail1 from "@movie-ticket/assets/images/movie-details01.jpg";
+import moviedetail2 from "@movie-ticket/assets/images/movie-details02.jpg";
+import moviedetail3 from "@movie-ticket/assets/images/movie-details03.jpg";
+import banner from "@movie-ticket/assets/images/banner01 (1).jpg";
+import cast from "@movie-ticket/assets/images/cast02.jpg";
+import { Film } from "@movie-ticket/constant/modal";
+import { Caster } from "@movie-ticket/components/Caster";
+
+export const DetailFilmScence: FC<{ film: Film; i18n: any }> = ({
+  film,
+  i18n,
+}): JSX.Element => {
+  console.log("Filmmm: ", film);
   return (
     <>
-      <section className="details-banner bg_img">
+      <section
+        className="details-banner bg_img"
+        style={{
+          // backgroundImage: `url(${require(`@movie-ticket/assets/images${film?.image}`)})`,
+          backgroundImage: `url(${require(`@movie-ticket/assets/images/banner03.jpg`)})`,
+        }}
+      >
         <div className="grid">
           <div className="details-banner-wrapper">
             <div className="details-banner-thumb">
-              <img src={thumb} alt="movie" />
+              <img
+                src={require(`@movie-ticket/assets/images/${film?.image}`)}
+                alt="movie"
+              />
               <a
                 href="https://www.youtube.com/embed/KGeBMAgc46E"
                 className="video-popup"
@@ -28,7 +43,7 @@ const DetailFilm = () => {
               </a>
             </div>
             <div className="details-banner-content offset-lg-3">
-              <h3 className="title">Venus</h3>
+              <h3 className="title">{film?.name}</h3>
               <div className="tags">
                 <a href="#0">English</a>
                 <a href="#0">Hindi</a>
@@ -227,7 +242,7 @@ const DetailFilm = () => {
                 <div className="details-photos owl-carousel">
                   <div className="thumb">
                     <a
-                      href="./assets/images/movie/movie-details01.jpg"
+                      href="@movie-ticket/assets/images/movie/movie-details01.jpg"
                       className="img-pop"
                     >
                       <img src={moviedetail1} alt="movie" />
@@ -235,7 +250,7 @@ const DetailFilm = () => {
                   </div>
                   <div className="thumb">
                     <a
-                      href="./assets/images/movie/movie-details01.jpg"
+                      href="@movie-ticket/assets/images/movie/movie-details01.jpg"
                       className="img-pop"
                     >
                       <img src={moviedetail2} alt="movie" />
@@ -243,7 +258,7 @@ const DetailFilm = () => {
                   </div>
                   <div className="thumb">
                     <a
-                      href="./assets/images/movie/movie-details01.jpg"
+                      href="@movie-ticket/assets/images/movie/movie-details01.jpg"
                       className="img-pop"
                     >
                       <img src={moviedetail3} alt="movie" />
@@ -260,24 +275,16 @@ const DetailFilm = () => {
                   <div className="tab-area">
                     <div className="tab-item active">
                       <div className="item">
-                        <h5 className="sub-title">Synopsis</h5>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Proin vehicula eros sit amet est tincidunt
-                          aliquet. Fusce laoreet ligula ac ultrices eleifend.
-                          Donec hendrerit fringilla odio, ut feugiat mi
-                          convallis nec. Fusce elit ex, blandit vitae mattis sit
-                          amet, iaculis ac elit. Ut diam mauris, viverra sit
-                          amet dictum vel, aliquam ac quam. Ut mi nisl,
-                          fringilla sit amet erat et, convallis porttitor
-                          ligula. Sed auctor, orci id luctus venenatis, dui
-                          dolor euismod risus, et pharetra orci lectus quis
-                          sapien. Duis blandit ipsum ac consectetur scelerisque.{" "}
-                        </p>
+                        <h5 className="sub-title">
+                          {i18n.t("main.film.description")}
+                        </h5>
+                        <p>{film?.description}</p>
                       </div>
                       <div className="item">
                         <div className="header">
-                          <h5 className="sub-title">cast</h5>
+                          <h5 className="sub-title">
+                            {i18n.t("main.film.cast")}
+                          </h5>
                           <div className="navigation">
                             <div className="cast-prev">
                               <i className="flaticon-double-right-arrows-angles"></i>
@@ -288,62 +295,12 @@ const DetailFilm = () => {
                           </div>
                         </div>
                         <div className="casting-slider owl-carousel">
-                          <div className="cast-item">
-                            <div className="cast-thumb">
-                              <a href="#0">
-                                <img src={cast} alt="cast" />
-                              </a>
-                            </div>
-                            <div className="cast-content">
-                              <h6 className="cast-title">
-                                <a href="#0">Bill Hader</a>
-                              </h6>
-                              <span className="cate">actor</span>
-                              <p>As Richie Tozier</p>
-                            </div>
-                          </div>
-                          <div className="cast-item">
-                            <div className="cast-thumb">
-                              <a href="#0">
-                                <img src={cast} alt="cast" />
-                              </a>
-                            </div>
-                            <div className="cast-content">
-                              <h6 className="cast-title">
-                                <a href="#0">nora hardy</a>
-                              </h6>
-                              <span className="cate">actor</span>
-                              <p>As raven</p>
-                            </div>
-                          </div>
-                          <div className="cast-item">
-                            <div className="cast-thumb">
-                              <a href="#0">
-                                <img src={cast} alt="cast" />
-                              </a>
-                            </div>
-                            <div className="cast-content">
-                              <h6 className="cast-title">
-                                <a href="#0">alvin peters</a>
-                              </h6>
-                              <span className="cate">actor</span>
-                              <p>As magneto</p>
-                            </div>
-                          </div>
-                          <div className="cast-item">
-                            <div className="cast-thumb">
-                              <a href="#0">
-                                <img src={cast} alt="cast" />
-                              </a>
-                            </div>
-                            <div className="cast-content">
-                              <h6 className="cast-title">
-                                <a href="#0">josh potter</a>
-                              </h6>
-                              <span className="cate">actor</span>
-                              <p>As quicksilver</p>
-                            </div>
-                          </div>
+                          <Caster
+                            image={cast}
+                            nameInMovies="David"
+                            name="Bui Quoc Anh"
+                            role="Actor"
+                          />
                         </div>
                       </div>
                     </div>
@@ -357,5 +314,3 @@ const DetailFilm = () => {
     </>
   );
 };
-
-export default DetailFilm;

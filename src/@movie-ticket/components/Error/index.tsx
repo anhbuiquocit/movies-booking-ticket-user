@@ -5,7 +5,7 @@ import imgNotFound from "../../assets/images/404.png";
 // import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import "./style.scss";
 
-const NotImplemented = () => {
+const Error = () => {
   return (
     <>
       <div className="grid">
@@ -26,4 +26,4 @@ const NotImplemented = () => {
   );
 };
 
-export default NotImplemented;
+export default Error;

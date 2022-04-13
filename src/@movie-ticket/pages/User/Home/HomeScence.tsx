@@ -2,9 +2,14 @@ import React, { FC } from "react";
 import "./index.scss";
 import MoviesContainer from "@movie-ticket/components/MoviesContainer";
 import imageTest from "@movie-ticket/assets/images/banner01.jpg";
+
 import { Banner } from "@movie-ticket/components/Banner";
+import { Film } from "@movie-ticket/constant/modal";
 import Search from "@movie-ticket/components/SearchContainer";
-export const HomeScence: FC = (): JSX.Element => {
+
+export const HomeScence: FC<{ films: Array<Film> }> = ({
+  films,
+}): JSX.Element => {
   return (
     <>
       <Banner
@@ -23,7 +28,10 @@ export const HomeScence: FC = (): JSX.Element => {
             <div className="grid__column-3">
               <div className="widget-banner">
                 <a href="#">
-                  <img src={require("@movie-ticket/assets/images/adv.jpg")} alt="" />
+                  <img
+                    src={require("@movie-ticket/assets/images/adv.jpg")}
+                    alt=""
+                  />
                 </a>
               </div>
             </div>
@@ -34,7 +42,19 @@ export const HomeScence: FC = (): JSX.Element => {
                   <a href="#">View All</a>
                 </div>
                 <div className="grid__row">
-                  <div className="col-lg-4">
+                  {films.map((item, key) => (
+                    <div className="col-lg-4">
+                      <MoviesContainer
+                        // image="movie01.jpg"
+                        image={item.image}
+                        id={item.id}
+                        name={item.name}
+                        love="80"
+                        rate="80"
+                      />
+                    </div>
+                  ))}
+                  {/* <div className="col-lg-4">
                     <MoviesContainer
                       image="movie01.jpg"
                       name="Movies01"
@@ -57,7 +77,7 @@ export const HomeScence: FC = (): JSX.Element => {
                       love="80"
                       rate="80"
                     />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
