@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import { Formik, FormikHelpers, Form } from "formik";
 import ConfirmationModal from "@movie-ticket/components/ConfirmModal/ConfirmModalScence";
 import i18n from "@movie-ticket/translation";
+import { CustomErrorComponent } from "@movie-ticket/components/CustomErrorComponent";
 import * as Yup from "yup";
 export interface SigninProps {
   onSubmit: (values: any, helpers: FormikHelpers<any>) => void;
@@ -37,7 +38,6 @@ const SigninScence = ({ onSubmit }: SigninProps): JSX.Element => {
           setTouched,
           validateForm,
         }) => {
-          console.log("Errors : ", errors);
           return (
             <Form>
               <section className="account-section bg_img">
@@ -52,7 +52,6 @@ const SigninScence = ({ onSubmit }: SigninProps): JSX.Element => {
                         <div className="form-group">
                           {" "}
                           <TextField
-                            helperText="Please enter your username"
                             label="username"
                             name="username"
                             size="small"
@@ -62,11 +61,12 @@ const SigninScence = ({ onSubmit }: SigninProps): JSX.Element => {
                               setFieldValue("username", e.target.value);
                             }}
                           />
+                          <CustomErrorComponent msg={errors?.username} />
                         </div>
                         <div className="form-group">
                           {" "}
                           <TextField
-                            helperText="Please enter your password"
+                            // helperText="Please enter your password"
                             label="password"
                             name="password"
                             size="small"
@@ -77,6 +77,7 @@ const SigninScence = ({ onSubmit }: SigninProps): JSX.Element => {
                               setFieldValue("password", e.target.value);
                             }}
                           />
+                          <CustomErrorComponent msg={errors?.password} />
                         </div>
                         <div
                           className="form-group checkgroup"
@@ -100,10 +101,7 @@ const SigninScence = ({ onSubmit }: SigninProps): JSX.Element => {
                           {/* <Button
                           variant="outlined"
                           onClick={async () => {
-                            // console.log(
-                            //   "Values in formik props state: ",
-                            //   values
-                            // );
+                          
                             const response = await validateForm();
                             if (Object.keys(response).length) {
                               // @ts-ignore

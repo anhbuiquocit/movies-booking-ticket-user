@@ -21,7 +21,6 @@ const DetailFilm: FC<{ match: any }> = ({
   if (loading) return <Loading />;
   if (error) return <Error />;
   const { film } = data;
-  console.log("data detail film: ", film);
   return <DetailFilmScence film={film} i18n={i18n} />;
 };
 

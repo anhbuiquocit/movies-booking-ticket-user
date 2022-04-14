@@ -20,7 +20,7 @@ $black-color: #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   .header_nav {
     display: flex;
     list-style: none;
@@ -90,6 +90,37 @@ $black-color: #000;
         #aa52a1 63%,
         #ff4343 100%
       );
+    }
+    .header_nav__item {
+      position: relative;
+      .user-submenu {
+        display: none;
+        position: absolute;
+        min-width: 150px;
+        background-color: #0a1e5e;
+        li {
+          padding: 5px 20px;
+          cursor: pointer;
+          &:hover {
+            background-color: pink;
+          }
+          a {
+            color: $white-color;
+            font-size: 1rem !important;
+          }
+        }
+      }
+      &:hover .user-submenu {
+        display: block;
+      }
+      .header_nav__item-avartar {
+        display: flex;
+        // align-items: center;
+        p{
+          font-size: .8rem;
+          padding: 3px 0 0 5px;
+        }
+      }
     }
   }
 }

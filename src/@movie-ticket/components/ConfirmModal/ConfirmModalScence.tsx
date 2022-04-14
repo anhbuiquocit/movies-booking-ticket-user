@@ -66,7 +66,6 @@ const ConfirmationModal = ({
         <DialogActions>
           <Button
             onClick={() => {
-              // handleClose();
               // setFieldValue(values[visibleKey], false);
               handleClose();
             }}
@@ -77,7 +76,10 @@ const ConfirmationModal = ({
             type="submit"
             onLoad={isSubmitting}
             disabled={isSubmitting}
-            onClick={handleSubmit}
+            onClick={() => {
+              handleSubmit();
+              handleClose();
+            }}
           >
             {yes}
           </Button>

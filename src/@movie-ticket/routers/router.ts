@@ -9,6 +9,7 @@ const routers = {
   userSignin: "/user/signin",
   detailFilm: "/film/detail/:id",
   testModal: "/modal",
+  userDetail: "/user/detail",
 };
 
 export default routers;

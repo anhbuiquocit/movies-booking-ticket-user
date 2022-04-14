@@ -7,6 +7,7 @@ import Signin from "@movie-ticket/pages/User/Signin";
 import Signup from "@movie-ticket/pages/User/Signup/Signup";
 import DetailFilm from "@movie-ticket/pages/User/DetailFilm";
 import Modal from "@movie-ticket/components/Modal";
+import UserDetail from "@movie-ticket/pages/User/UserDetail";
 
 const userRouters = [
   {
@@ -64,6 +65,13 @@ const userRouters = [
     isPrivate: false,
     notProtected: false,
     component: Modal,
+  },
+  {
+    path: Router.userDetail,
+    exact: true,
+    isPrivate: false,
+    notProtected: false,
+    component: UserDetail,
   },
 ];
 export default userRouters;

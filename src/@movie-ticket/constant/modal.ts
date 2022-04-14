@@ -13,4 +13,24 @@ export interface Film {
   imageDescription1?: string;
   imageDescription2?: string;
   imageDescription3?: string;
+  [x: string]: any;
+}
+
+export interface User {
+  id?: string;
+  createAt?: Date;
+  updateAt?: Date;
+  deleteAt?: Date;
+  firstname?: string;
+  lastname?: string;
+  birthday?: Date;
+  address?: string;
+  email?: string;
+  password?: string;
+  username?: string;
+  active?: Boolean;
+  point?: string;
+  phone?: string;
+  role?: string;
+  [x: string]: any;
 }

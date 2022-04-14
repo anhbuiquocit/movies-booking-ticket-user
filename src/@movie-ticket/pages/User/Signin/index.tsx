@@ -38,7 +38,6 @@ const Signin = ({
         popup.success("Đăng nhập thành công");
       }
       setSubmitting(false);
-      console.log(result);
       resetForm();
     } catch (err: unknown) {
       popup.error(err);

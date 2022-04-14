@@ -21,7 +21,7 @@ const ProtectedRoute = ({
         const props = { ...rest, ...routerProps };
         if (redirect === Routers.userSignin) {
           return (
-            <UserLayout>
+            <UserLayout {...props}>
               <Component {...props} />
             </UserLayout>
           );

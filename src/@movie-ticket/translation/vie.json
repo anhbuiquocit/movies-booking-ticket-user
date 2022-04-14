@@ -30,9 +30,28 @@
       "description": "Mô tả",
       "cast": "Diễn viên"
     },
+    "header": {
+      "userDetail": "Thông tin người dùng",
+      "signout": "Đăng xuất",
+      "homePage": "Trang chủ",
+      "signin": "Đăng nhập"
+    },
+    "userDetail": {
+      "username": "Tên đăng nhập",
+      "password": "Mật khẩu",
+      "confirmPassword": "Xác nhận mật khẩu",
+      "firstname": "Họ",
+      "lastname": "Tên",
+      "birthday": "Ngày sinh",
+      "address": "Địa chỉ",
+      "email": "Email",
+      "update": "Cập nhật",
+      "updateSuccess": "Cập nhật thành công"
+    },
     "confirmMessage": "Bạn chắc chắn chứ?",
     "validation": {
-      "required": "Không được để trống"
+      "required": "Không được để trống",
+      "isMail": "Hãy nhập địa chỉ email"
     }
   }
 }

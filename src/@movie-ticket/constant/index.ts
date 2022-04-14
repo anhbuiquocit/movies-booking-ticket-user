@@ -3,3 +3,7 @@ export const USER_TOKEN_KEY = "user_token";
 export const ADMIN_TOKEN_KEY = "admin_token";
 export const CUSTOM_MODAL = [];
 export const SMALL_MODAL = [];
+export const USER_ROLE = {
+  USER: "USER",
+  ADMIN: "ADMIN",
+};

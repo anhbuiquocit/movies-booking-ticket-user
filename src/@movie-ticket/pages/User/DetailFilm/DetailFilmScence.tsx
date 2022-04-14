@@ -18,7 +18,6 @@ export const DetailFilmScence: FC<{ film: Film; i18n: any }> = ({
   film,
   i18n,
 }): JSX.Element => {
-  console.log("Filmmm: ", film);
   return (
     <>
       <section

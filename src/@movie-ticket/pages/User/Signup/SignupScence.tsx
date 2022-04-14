@@ -73,7 +73,6 @@ export const SignupScence = ({ onSubmit, i18n }: SignupProps): JSX.Element => {
         ),
     })
     .test("validate_password", "Kiểm tra lại mật khẩu", (val) => {
-      console.log("vallll: ", val);
       if (val.password === val.confirmPassword) {
         return true;
       }
@@ -108,7 +107,6 @@ export const SignupScence = ({ onSubmit, i18n }: SignupProps): JSX.Element => {
           validateForm,
           setErrors,
         }) => {
-          console.log("Errors in component Signup: ", errors);
           return (
             <section className="account-section bg_img">
               <div className="container">
@@ -216,10 +214,6 @@ export const SignupScence = ({ onSubmit, i18n }: SignupProps): JSX.Element => {
                               onChange={(value) => {
                                 setFieldValue(
                                   "birthday",
-                                  moment.utc(value).toISOString()
-                                );
-                                console.log(
-                                  "datePick: ",
                                   moment.utc(value).toISOString()
                                 );
                               }}

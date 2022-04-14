@@ -1,13 +1,13 @@
 import { USER_TOKEN_KEY, ADMIN_TOKEN_KEY } from "@movie-ticket/constant";
 
 const getUserType = () => {
-  const doctorToken = localStorage.getItem(USER_TOKEN_KEY);
-  const staffToken = localStorage.getItem(ADMIN_TOKEN_KEY);
-  if (doctorToken) {
-    return "DOCTOR";
+  const userToken = localStorage.getItem(USER_TOKEN_KEY);
+  const adminToken = localStorage.getItem(ADMIN_TOKEN_KEY);
+  if (userToken) {
+    return "USER";
   }
-  if (staffToken) {
-    return "STAFF";
+  if (adminToken) {
+    return "ADMIN";
   }
   return "ANONYMOUS";
 };

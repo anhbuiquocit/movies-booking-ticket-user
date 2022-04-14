@@ -16,8 +16,7 @@ export const Home: FC = (): JSX.Element => {
   });
   if (loading) return <Loading />;
   if (error) return <Error />;
-  console.log("fffff");
-  console.log("dataaa: ", data);
+
   const { films } = data;
   return <HomeScence films={films} />;
 };

@@ -16,7 +16,6 @@ const NewLater = (props: Props) => {
   //   formState: { errors },
   // } = useForm<FormData>({});
   const onSubmit = (data: any) => {
-    console.log("dataSubmit: ", data);
   };
   return (
     <div className="newlater-section padding-bottom">
