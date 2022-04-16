@@ -1,0 +1,1 @@
+export { getSeatSelect } from "./commonFunction";

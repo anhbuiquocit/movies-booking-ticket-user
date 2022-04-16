@@ -10,6 +10,7 @@ const routers = {
   detailFilm: "/film/detail/:id",
   testModal: "/modal",
   userDetail: "/user/detail",
+  bookingTicket: "/booking_ticket",
 };
 
 export default routers;

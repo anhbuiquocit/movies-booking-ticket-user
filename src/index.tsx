@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import "./index.css";
 import "./@movie-ticket/styles/styles.css";
 import "./@movie-ticket/styles/main.css";

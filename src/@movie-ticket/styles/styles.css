@@ -387,6 +387,111 @@ video {
   flex-wrap: wrap !important;
 }
 
+.section-header-1::before,
+.footer-section::before,
+.banner-section::before,
+.speaker-banner::before,
+.widget-1.widget-check .add-check-area a i::after,
+.widget-1.widget-check .add-check-area a i::before,
+.widget-1.widget-check .form-group label::before,
+.side-shape::after,
+.side-shape::before,
+.newslater-container::after,
+.search-tab .tab-area::before,
+.movie-details .summery-review .tab-menu li::after,
+.movie-details .summery-review .tab-menu li::before,
+.screen::after,
+.screen::before,
+.screen-area .subtitle::after,
+.screen-area .subtitle::before,
+.checkout-widget .payment-option li.active a::after,
+.checkout-widget .payment-option li.active a::before,
+.checkout-widget.checkout-card
+  .payment-card-form
+  .form-group.check-group
+  label::after,
+.checkout-widget.checkout-card
+  .payment-card-form
+  .form-group.check-group
+  label::before,
+.event-about-thumb::after,
+.event-about-thumb::before,
+.statistics-section::after,
+.ticket--item .ticket-content ul li::before,
+.apps-wrapper .apps-bg,
+.counter--area .counter-item::after,
+.counter--area .counter-item::before,
+.account-area .account-form .form-group.checkgroup input::after,
+.account-area .or span::after,
+.account-area .or span::before,
+.contact-container .bg-thumb,
+.post-item.post-details .post-content .content .post-header blockquote::before {
+  position: absolute;
+  content: "";
+}
+
+.section-header-1::before,
+.footer-section::before,
+.banner-section::before,
+.speaker-banner::before,
+.widget-1.widget-check .add-check-area a i::after,
+.widget-1.widget-check .add-check-area a i::before,
+.widget-1.widget-check .form-group label::before,
+.side-shape::after,
+.side-shape::before,
+.newslater-container::after,
+.search-tab .tab-area::before,
+.movie-details .summery-review .tab-menu li::after,
+.movie-details .summery-review .tab-menu li::before,
+.screen::after,
+.screen::before,
+.screen-area .subtitle::after,
+.screen-area .subtitle::before,
+.checkout-widget .payment-option li.active a::after,
+.checkout-widget .payment-option li.active a::before,
+.checkout-widget.checkout-card
+  .payment-card-form
+  .form-group.check-group
+  label::after,
+.checkout-widget.checkout-card
+  .payment-card-form
+  .form-group.check-group
+  label::before,
+.event-about-thumb::after,
+.event-about-thumb::before,
+.statistics-section::after,
+.ticket--item .ticket-content ul li::before,
+.apps-wrapper .apps-bg,
+.counter--area .counter-item::after,
+.counter--area .counter-item::before,
+.account-area .account-form .form-group.checkgroup input::after,
+.account-area .or span::after,
+.account-area .or span::before,
+.contact-container .bg-thumb,
+.post-item.post-details .post-content .content .post-header blockquote::before {
+  position: absolute;
+  content: "";
+}
+
+.event-banner-section::after,
+.proceed-book::before,
+.faq-item .faq-title .right-icon::after,
+.faq-item .faq-title .right-icon::before,
+.gallery-item .gallery-thumb a,
+.gallery-item::before,
+.speak-con-wrapper::before,
+.sports-ticket::before,
+.sports-ticket::after,
+.client-section::after,
+.contact-container .bg-thumb::before,
+.contact-info .info-area::before {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: absolute;
+  content: "";
+}
 .fa,
 .fas {
   font-weight: 900;
@@ -500,4 +605,28 @@ ul {
   height: 100vh;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+}
+
+.details-banner.hero-area {
+  padding-top: 212px;
+  padding-bottom: 112px;
+}
+.single-seat {
+  cursor: pointer;
+  position: relative;
+}
+
+.custom-button {
+  background-image: -webkit-linear-gradient(
+    169deg,
+    #5560ff 17%,
+    #aa52a1 63%,
+    #ff4343 100%
+  );
+  padding: 11px 24px;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  border-radius: 25px;
+  display: inline-block;
 }

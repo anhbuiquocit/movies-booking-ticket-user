@@ -95,6 +95,7 @@ export const DetailFilmScence: FC<{ film: Film; i18n: any }> = ({
           </div>
         </div>
       </section>
+      
       <section className="book-section bg-one">
         <div className="grid">
           <div className="book-wrapper offset-lg-3">
