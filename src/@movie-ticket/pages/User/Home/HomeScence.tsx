@@ -23,7 +23,10 @@ export const HomeScence: FC = (): JSX.Element => {
             <div className="grid__column-3">
               <div className="widget-banner">
                 <a href="#">
-                  <img src={require("@movie-ticket/assets/images/adv.jpg")} alt="" />
+                  <img
+                    src={require("@movie-ticket/assets/images/adv.jpg")}
+                    alt=""
+                  />
                 </a>
               </div>
             </div>
