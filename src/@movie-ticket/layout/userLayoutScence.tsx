@@ -19,7 +19,6 @@ export const UserLayoutScence = ({
   userData,
   handleUserSignOut,
 }: UserLayoutProps) => {
-  console.log("xxx: ", userData);
   return (
     <div className="app_container">
       <div className="header-section header-active">

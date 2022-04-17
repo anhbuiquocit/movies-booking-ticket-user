@@ -34,3 +34,26 @@ export interface User {
   role?: string;
   [x: string]: any;
 }
+
+export interface Room {
+  id?: string;
+  name?: string;
+  label?: string;
+  value?: string;
+  [x: string]: any;
+}
+
+export interface Showing {
+  id?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
+  RoomId?: string;
+  FilmId?: string;
+  price?: number;
+  startDate?: Date;
+  endDate?: Date;
+  startTime?: Date;
+  endTime?: Date;
+  [x: string]: any;
+}

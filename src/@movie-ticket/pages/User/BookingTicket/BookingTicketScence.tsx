@@ -1,41 +1,61 @@
-import React, { FC } from "react";
-import { Film } from "@movie-ticket/constant/modal";
+import React, { FC, useEffect, useState } from "react";
+import { Film, Room, Showing } from "@movie-ticket/constant/modal";
 import { Formik, FormikHelpers, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { FORMAT_TIME } from "@movie-ticket/constant";
 import SeatLine from "@movie-ticket/components/SeatLine";
-import { getSeatSelect } from "@movie-ticket/libs";
-import { Checkbox, Stack, TextField } from "@mui/material";
+import { getSeatSelect, calculateMoney } from "@movie-ticket/libs";
+import { TextField, Autocomplete, Button } from "@mui/material";
 import AdapterJalali from "@date-io/date-fns/";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider/index";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker/index";
+import ConfirmationModal from "@movie-ticket/components/ConfirmModal/ConfirmModalScence";
 import { Input, AutoComplete } from "antd";
 import moment from "moment";
 import { FORMAT_DATE } from "@movie-ticket/constant";
 
 interface BookintTIcketScenceProps {
   film?: Film;
+  roomData: Array<Room>;
   onSubmit: (values: any, helper: FormikHelpers<any>) => void;
 }
 const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
   film,
   onSubmit,
+  roomData,
 }): JSX.Element => {
-  console.log("process.env: ", process.env);
+  const [listShow, setListShow] = useState<Showing[]>([]);
+  const [rooms, setRooms] = useState<Room[]>([]);
+  useEffect(() => {
+    const templist = [];
+    for (let i = 0; i < roomData.length; i++) {
+      const item = Object.assign({}, roomData[i], {
+        // label: roomData[i].name,
+        value: roomData[i].name,
+      });
+      templist.push(item);
+    }
+    setRooms(templist);
+    if (film && film.Showing && film.Showing.length > 0) {
+      let listItem = [];
+      for (let i = 0; i < film.Showing.length; i++) {
+        let item = Object.assign({}, film.Showing[i], {
+          rangeTime: `${moment
+            .utc(film.Showing[i].startTime)
+            .format(FORMAT_TIME)} - ${moment
+            .utc(film.Showing[i].endTime)
+            .format(FORMAT_TIME)}`,
+        });
+        listItem.push(item);
+      }
+      setListShow(listItem);
+    }
+  }, []);
   const listLine = ["A", "B", "C", "D", "E", "F", "G", "H"];
-  const options = [
-    {
-      label: "09:00",
-      value: "09:00",
-    },
-    {
-      label: "10:00",
-      value: "10:00",
-    },
-    {
-      label: "13:00",
-      value: "13:00",
-    },
-  ];
+  const validationSchema = Yup.object().shape({
+    show: Yup.object().required("Chọn giờ"),
+    room: Yup.object().required("Chọn phòng"),
+  });
   return (
     <>
       <Formik
@@ -44,6 +64,9 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
           confirm: false,
           date: null,
           time: null,
+          rooms,
+          room: {},
+          show: { price: 0 },
           lineSeat0: [
             false,
             false,
@@ -174,7 +197,7 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
           ],
         }}
         onSubmit={onSubmit}
-        // validationSchema={validationSchema}
+        validationSchema={validationSchema}
       >
         {({
           values,
@@ -188,7 +211,6 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
           validateForm,
           setErrors,
         }) => {
-          console.log("Values: ", values);
           return (
             <>
               <section
@@ -200,7 +222,7 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                 <div className="grid">
                   <div className="details-banner-wrapper">
                     <div className="details-banner-content offset-lg-3">
-                      {/* <h3 className="title">{film?.name}</h3> */}
+                      <h3 className="title">{film?.name}</h3>
                       <div className="tags">
                         <a href="#0">English</a>
                         <a href="#0">Hindi</a>
@@ -208,45 +230,6 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                       <a href="#0" className="button">
                         horror
                       </a>
-                      {/* <div className="social-and-duration">
-                        <div className="duration-area">
-                          <div className="item">
-                            <i className="fas fa-calendar-alt"></i>
-                            <span>06 Dec, 2020</span>
-                          </div>
-                          <div className="item">
-                            <i className="far fa-clock"></i>
-                            <span>2 hrs 50 mins</span>
-                          </div>
-                        </div>
-                        <ul className="social-share">
-                          <li>
-                            <a href="#0">
-                              <i className="fab fa-facebook-f"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#0">
-                              <i className="fab fa-twitter"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#0">
-                              <i className="fab fa-pinterest-p"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#0">
-                              <i className="fab fa-linkedin-in"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#0">
-                              <i className="fab fa-google-plus-g"></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -256,7 +239,9 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                 <div className="container">
                   <div className="page-title-area">
                     <div className="item md-order-1">
-                      <a href="#">Button Back</a>
+                      <a href="#" className="custom-button">
+                        Button Back
+                      </a>
                     </div>
                     <div className="item date-item">
                       <div className="date-container">
@@ -266,10 +251,6 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                               // label="Basic example"
                               value={moment(values?.date)}
                               onChange={(value) => {
-                                console.log(
-                                  "value: ",
-                                  moment(value).format(FORMAT_DATE)
-                                );
                                 setFieldValue(
                                   "date",
                                   moment(value).format(FORMAT_DATE)
@@ -283,24 +264,48 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                         </LocalizationProvider>
                       </div>
                       <div className="time-container">
-                        <AutoComplete
-                          dropdownClassName="certain-category-search-dropdown"
-                          dropdownMatchSelectWidth={150}
-                          style={{ width: 150 }}
-                          options={options}
-                          onChange={(e) => {
-                            console.log("value select time: ", e);
+                        <Autocomplete
+                          // multiple
+                          limitTags={2}
+                          id="multiple-limit-tags"
+                          options={listShow}
+                          getOptionLabel={(option) => option.rangeTime}
+                          onChange={(event, value) => {
+                            setFieldValue("show", value);
+                            console.log("Values Shwo: ", value);
                           }}
-                        >
-                          <Input.Search
-                            size="large"
-                            placeholder="HH:mm"
-                            // style={{ height: 50 }}
-                          />
-                        </AutoComplete>
+                          renderInput={(params) => (
+                            <TextField
+                              {...params}
+                              label="showing"
+                              placeholder="Chọn giờ chiếu"
+                            />
+                          )}
+                          sx={{
+                            width: "250px",
+                            bgcolor: "#fff",
+                            color: "#fff",
+                          }}
+                        />
                       </div>
                     </div>
-                    <div className="item">Item 3</div>
+                    <div className="item">
+                      <AutoComplete
+                        dropdownClassName="certain-category-search-dropdown"
+                        dropdownMatchSelectWidth={150}
+                        style={{ width: 150 }}
+                        options={values.rooms}
+                        onChange={(e, value) => {
+                          setFieldValue("room", value);
+                        }}
+                      >
+                        <Input.Search
+                          size="large"
+                          placeholder="Chọn phòng"
+                          // style={{ height: 50 }}
+                        />
+                      </AutoComplete>
+                    </div>
                   </div>
                 </div>
               </section>
@@ -373,16 +378,47 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                       </div>
                       <div className="book-item">
                         <span>total price</span>
-                        <h3 className="title">$150</h3>
+                        <h3 className="title">
+                          {calculateMoney(
+                            values.show.price,
+                            values.lineSeat0,
+                            values.lineSeat1,
+                            values.lineSeat2,
+                            values.lineSeat3,
+                            values.lineSeat4,
+                            values.lineSeat5,
+                            values.lineSeat6,
+                            values.lineSeat7
+                          )}
+                          Đ
+                        </h3>
                       </div>
                       <div className="book-item">
-                        <a href="#" className="custom-button">
-                          Book
-                        </a>
+                        <Button
+                          variant="outlined"
+                          onClick={async () => {
+                            const response = await validateForm();
+                            if (Object.keys(response).length) {
+                              // @ts-ignore
+                              setTouched(response);
+                            } else {
+                              setFieldValue("confirm", true);
+                            }
+                          }}
+                        >
+                          Đặt
+                        </Button>
                       </div>
                     </div>
                   </div>
                 </div>
+                <ConfirmationModal
+                  isSubmitting={isSubmitting}
+                  values={values}
+                  confirmationMessage="Bạn chắc chắn chứ?"
+                  handleSubmit={handleSubmit}
+                  setFieldValue={setFieldValue}
+                />
               </div>
             </>
           );
