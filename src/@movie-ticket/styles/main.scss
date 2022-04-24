@@ -13,6 +13,37 @@ body {
   width: 100%;
   height: 100%;
 }
-a{
+a {
   text-decoration: none;
+}
+
+.tr {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .th {
+    width: 30%;
+    padding: 15px;
+    font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
+
+    @media (--sp) {
+      width: 100%;
+      text-align: left;
+      padding: 10px;
+    }
+  }
+
+  .td {
+    width: 70%;
+    padding: 15px;
+    flex-grow: 1;
+    position: relative;
+    @media (--sp) {
+      width: 100%;
+      padding: 10px;
+    }
+  }
 }

@@ -48,7 +48,43 @@
       "update": "Cập nhật",
       "updateSuccess": "Cập nhật thành công"
     },
+    "bookingTicket": {
+      "time": "Thời gian",
+      "date": "Ngày",
+      "room": "Phòng",
+      "placeHolder": {
+        "selectTime": "Chọn giờ"
+      },
+      "screen": "Màn hình",
+      "silverPlus": "Sân khấu",
+      "booksucessfully": "Vé đã thêm vào giỏ"
+    },
+    "managementUser": {
+      "titleTable": "Quản lý người dùng",
+      "firstname": "Họ",
+      "lastname": "Tên",
+      "email": "email",
+      "username": "Tên đăng nhập",
+      "active": "Kích hoạt",
+      "role": "Loại người dùng",
+      "birthday": "Ngày sinh",
+      "password": "Mật khẩu"
+    },
     "confirmMessage": "Bạn chắc chắn chứ?",
+    "button": {
+      "back": "Trở về",
+      "createUser": "Tạo người dùng",
+      "create": "Tạo",
+      "update": "Sửa",
+      "delete": "Xóa"
+    },
+    "status": {
+      "active": "Đã kích hoạt",
+      "notActive": "Chưa kích hoạt"
+    },
+    "notification": {
+      "deleteUserSuccess": "Xóa người dùng thành công"
+    },
     "validation": {
       "required": "Không được để trống",
       "isMail": "Hãy nhập địa chỉ email"

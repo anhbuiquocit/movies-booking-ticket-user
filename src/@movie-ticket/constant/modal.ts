@@ -57,3 +57,20 @@ export interface Showing {
   endTime?: Date;
   [x: string]: any;
 }
+
+export interface Admin {
+  id?: string;
+  createAt?: Date;
+  updateAt?: Date;
+  deleteAt?: Date;
+  firstname?: string;
+  lastname?: string;
+  birthday?: Date;
+  address?: string;
+  email?: string;
+  password?: string;
+  username?: string;
+  point?: string;
+  phone?: string;
+  [x: string]: any;
+}

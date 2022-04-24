@@ -51,6 +51,7 @@ const ConfirmationModal = ({
       </Button> */}
       <Dialog
         open={values[visibleKey]}
+        style={{ minWidth: "500px" }}
         // TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}

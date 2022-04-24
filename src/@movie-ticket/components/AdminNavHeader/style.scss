@@ -1,0 +1,26 @@
+.header-parent-menu {
+  position: relative;
+  .header-sub-menu {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 150px;
+    top: 40px;
+    // right: 10px;
+    z-index: 4;
+    border-radius: 10px;
+    li {
+      padding: 10px;
+      &:hover {
+        background-color: #e73774;
+      }
+      min-height: 30px;
+      a {
+        color: #000;
+      }
+    }
+  }
+  &:hover .header-sub-menu {
+    display: block;
+  }
+}

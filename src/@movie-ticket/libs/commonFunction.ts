@@ -1,3 +1,4 @@
+import queryString from "query-string";
 export const getSeatSelect = (
   arr0: Array<Boolean>,
   arr1: Array<Boolean>,
@@ -94,4 +95,15 @@ export const convertLineSeatToArray = (
     return [arr0, arr1, arr2, arr3, arr4, arr5, arr6, arr7];
   }
   return [];
+};
+
+export const onChangePage = (history, search) => (e) => {
+  console.log("onChangePage: ", e);
+  const searchObject = queryString.parse(search);
+  history.push({
+    search: queryString.stringify({
+      ...searchObject,
+      page: parseInt(e),
+    }),
+  });
 };

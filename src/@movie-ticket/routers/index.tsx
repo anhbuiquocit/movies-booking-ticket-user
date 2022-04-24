@@ -2,7 +2,15 @@ import { ComponentType, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Header } from "./../components/Header/index";
 import userRouter from "./UserRouter";
-const AppRouter = () => {
+const AppRouter = ({
+  history,
+  localtion,
+  match,
+}: {
+  history: any;
+  localtion: any;
+  match: any;
+}) => {
   return (
     <>
       <Router>
@@ -19,9 +27,9 @@ const AppRouter = () => {
             };
           })}
         </Route> */}
-        
+
         <Switch>
-          {userRouter.map((route, key) => (
+          {userRouter.map((route: any, key) => (
             <Route
               key={key}
               exact={route.exact}

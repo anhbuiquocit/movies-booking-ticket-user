@@ -3,41 +3,49 @@ import { Film, Room, Showing } from "@movie-ticket/constant/modal";
 import { Formik, FormikHelpers, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { FORMAT_TIME } from "@movie-ticket/constant";
+import { CustomErrorComponent } from "@movie-ticket/components/CustomErrorComponent";
 import SeatLine from "@movie-ticket/components/SeatLine";
 import { getSeatSelect, calculateMoney } from "@movie-ticket/libs";
 import { TextField, Autocomplete, Button } from "@mui/material";
 import AdapterJalali from "@date-io/date-fns/";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider/index";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker/index";
+import { Link } from "react-router-dom";
 import ConfirmationModal from "@movie-ticket/components/ConfirmModal/ConfirmModalScence";
 import { Input, AutoComplete } from "antd";
 import moment from "moment";
 import { FORMAT_DATE } from "@movie-ticket/constant";
+import Routers from "@movie-ticket/routers/router";
+import queryString from "query-string";
 
 interface BookintTIcketScenceProps {
   film?: Film;
   roomData: Array<Room>;
   onSubmit: (values: any, helper: FormikHelpers<any>) => void;
+  i18n: any;
 }
 const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
   film,
   onSubmit,
   roomData,
+  i18n,
 }): JSX.Element => {
   const [listShow, setListShow] = useState<Showing[]>([]);
   const [rooms, setRooms] = useState<Room[]>([]);
+
+  console.log("filmmss title: ", film);
   useEffect(() => {
-    const templist = [];
+    const templist: any[] = [];
     for (let i = 0; i < roomData.length; i++) {
-      const item = Object.assign({}, roomData[i], {
+      const item1 = Object.assign({}, roomData[i], {
         // label: roomData[i].name,
         value: roomData[i].name,
       });
-      templist.push(item);
+      templist.push(item1);
     }
     setRooms(templist);
     if (film && film.Showing && film.Showing.length > 0) {
-      let listItem = [];
+      let listItem: any[] = [];
       for (let i = 0; i < film.Showing.length; i++) {
         let item = Object.assign({}, film.Showing[i], {
           rangeTime: `${moment
@@ -45,6 +53,7 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
             .format(FORMAT_TIME)} - ${moment
             .utc(film.Showing[i].endTime)
             .format(FORMAT_TIME)}`,
+          date: `${moment.utc(film.Showing[i].startDate).format(FORMAT_DATE)}`,
         });
         listItem.push(item);
       }
@@ -53,8 +62,21 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
   }, []);
   const listLine = ["A", "B", "C", "D", "E", "F", "G", "H"];
   const validationSchema = Yup.object().shape({
-    show: Yup.object().required("Chọn giờ"),
-    room: Yup.object().required("Chọn phòng"),
+    show: Yup.object().required(
+      `${i18n.t("main.bookingTicket.time")} ${i18n.t(
+        "main.validation.required"
+      )}`
+    ),
+    room: Yup.object().required(
+      `${i18n.t("main.bookingTicket.room")} ${i18n.t(
+        "main.validation.required"
+      )}`
+    ),
+    date: Yup.string().required(
+      `${i18n.t("main.bookingTicket.date")} ${i18n.t(
+        "main.validation.required"
+      )}`
+    ),
   });
   return (
     <>
@@ -63,7 +85,6 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
         initialValues={{
           confirm: false,
           date: null,
-          time: null,
           rooms,
           room: {},
           show: { price: 0 },
@@ -211,6 +232,7 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
           validateForm,
           setErrors,
         }) => {
+          console.log("values of formik state: ", values);
           return (
             <>
               <section
@@ -240,7 +262,7 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                   <div className="page-title-area">
                     <div className="item md-order-1">
                       <a href="#" className="custom-button">
-                        Button Back
+                        {i18n.t("main.button.back")}
                       </a>
                     </div>
                     <div className="item date-item">
@@ -260,25 +282,47 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                                 <TextField {...params} sx={{ width: 150 }} />
                               )}
                             />
+                            {/* <CustomErrorComponent msg={errors.date} /> */}
                           </div>
                         </LocalizationProvider>
+                        {/* <Autocomplete
+                          limitTags={2}
+                          id="multiple-limit-tags"
+                          options={listShow}
+                          getOptionLabel={(option) => option.date}
+                          onChange={(event, value) => {
+                            setFieldValue("date", value);
+                          }}
+                          renderInput={(params) => (
+                            <TextField
+                              {...params}
+                              label={i18n.t("main.bookingTicket.date")}
+                              placeholder={i18n.t("main.placeHolder.date")}
+                            />
+                          )}
+                          sx={{
+                            width: "250px",
+                            bgcolor: "#fff",
+                            color: "#fff",
+                          }}
+                        /> */}
                       </div>
                       <div className="time-container">
                         <Autocomplete
-                          // multiple
                           limitTags={2}
                           id="multiple-limit-tags"
                           options={listShow}
                           getOptionLabel={(option) => option.rangeTime}
                           onChange={(event, value) => {
                             setFieldValue("show", value);
-                            console.log("Values Shwo: ", value);
                           }}
                           renderInput={(params) => (
                             <TextField
                               {...params}
-                              label="showing"
-                              placeholder="Chọn giờ chiếu"
+                              label={i18n.t("main.bookingTicket.time")}
+                              placeholder={i18n.t(
+                                "main.placeHolder.selectTime"
+                              )}
                             />
                           )}
                           sx={{
@@ -287,6 +331,7 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                             color: "#fff",
                           }}
                         />
+                        {/* <CustomErrorComponent msg={errors.show} /> */}
                       </div>
                     </div>
                     <div className="item">
@@ -305,6 +350,19 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                           // style={{ height: 50 }}
                         />
                       </AutoComplete>
+                      {/* <CustomErrorComponent msg={errors.room} /> */}
+                      <Link
+                        to={{
+                          pathname: `${Routers.bookingTicketRouter}${film?.id}`,
+                          search: queryString.stringify({
+                            date: values.date,
+                            room: values.room,
+                          }),
+                        }}
+                        className="custom-button"
+                      >
+                        Tìm kiếm
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -313,14 +371,18 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
               <div className="seat-plan-section padding-bottom padding-top">
                 <div className="container">
                   <div className="screen-area">
-                    <h4 className="screen">Screen</h4>
+                    <h4 className="screen">
+                      {i18n.t("main.bookingTicket.screen")}
+                    </h4>
                     <div className="screen-thumb">
                       <img
                         src={`${require(`${process.env.REACT_APP_IMG_SRC}screen-thumb.png`)}`}
                         alt=""
                       />
                     </div>
-                    <h5 className="subtitle">silver plus</h5>
+                    <h5 className="subtitle">
+                      {i18n.t("main.bookingTicket.silverPlus")}
+                    </h5>
                     <div className="screen-wrapper">
                       <ul className="seat-area">
                         {listLine.map((item, index) => (
