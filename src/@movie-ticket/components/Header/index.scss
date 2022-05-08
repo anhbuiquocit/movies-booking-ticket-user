@@ -12,6 +12,10 @@ $black-color: #000;
   h2 {
     color: $white-color;
   }
+  img{
+    max-width: 600px;
+    max-height: 50px;
+  }
 }
 .header-container {
   // position: sticky;

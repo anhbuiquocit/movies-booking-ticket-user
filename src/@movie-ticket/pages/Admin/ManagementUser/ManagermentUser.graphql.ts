@@ -15,6 +15,7 @@ export const USER_CONNECTION = gql`
       point
       phone
       role
+      image
     }
   }
 `;
@@ -30,6 +31,7 @@ export const CREATE_USER = gql`
       firstname
       active
       role
+      image
     }
   }
 `;
@@ -53,5 +55,17 @@ export const USER_AGGREGATE = gql`
 export const DELETE_USER = gql`
   mutation Mutation($where: UserWhereUniqueInput!) {
     deleteUser(where: $where)
+  }
+`;
+
+export const CREATE_PRESIGN_URL = gql`
+  query Query($file: String!) {
+    createPresignedS3(file: $file)
+  }
+`;
+
+export const GET_IMAGE_URL = gql`
+  mutation GetImageUrl($key: String!) {
+    imageUrl(key: $key)
   }
 `;

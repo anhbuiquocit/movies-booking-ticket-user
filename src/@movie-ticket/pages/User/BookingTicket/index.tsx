@@ -8,6 +8,7 @@ import {
   ROOM_CONNECTION,
   FILMS,
   USER_BOOKING_TICKET,
+  GET_AVAILABLE_BOOKING_TICKET,
 } from "./BookingTicket.graphql";
 
 import Loading from "@movie-ticket/components/Loading";
@@ -27,7 +28,6 @@ const BookingTicket = ({
   match: any;
 }): JSX.Element => {
   let { date, time } = queryString.parse(search);
-  console.log("date in search dataa: ", date);
   const { loading, error, data } = useQuery(FILMS, {
     variables: {
       where: {
@@ -59,7 +59,6 @@ const BookingTicket = ({
     values: any,
     { setSubmitting, resetForm }: FormikHelpers<any>
   ) => {
-    console.log("valuessss in function book: ", values);
     const {
       lineSeat0,
       lineSeat1,
@@ -113,7 +112,6 @@ const BookingTicket = ({
       setSubmitting(false);
     }
   };
-  console.log("Data film: ", data);
   return (
     <BookingTicketScence
       onSubmit={onSubmit}

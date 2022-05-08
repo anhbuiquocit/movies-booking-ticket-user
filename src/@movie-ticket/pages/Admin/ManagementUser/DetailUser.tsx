@@ -18,7 +18,7 @@ const DetailUser = ({
   location: any;
   match: any;
 }) => {
-  console.log("iddd:", id);
+  
   const { loading, error, data } = useQuery(USER_CONNECTION, {
     variables: {
       where: {
@@ -31,12 +31,12 @@ const DetailUser = ({
   const [updateUser] = useMutation(UPDATE_USER);
   if (loading) return <Loading />;
   if (error) return <Error />;
-  console.log("data", data?.UsersConnection[0]);
+  
   const onSubmit = async (
     values: any,
     { setSubmitting, resetForm }: FormikHelpers<any>
   ) => {
-    console.log("Valuesss: ", values);
+    
     const {
       username,
       password,
@@ -46,6 +46,7 @@ const DetailUser = ({
       firstname,
       active,
       role,
+      fileImage,
     } = values;
     try {
       await updateUser({
@@ -72,6 +73,9 @@ const DetailUser = ({
             },
             role: {
               set: role,
+            },
+            image: {
+              set: fileImage,
             },
           },
         },

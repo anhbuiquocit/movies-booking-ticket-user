@@ -3,8 +3,14 @@ import "./style.css";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Formik, FormikHelpers, Form } from "formik";
+import {
+  InfoCircleOutlined,
+  UserOutlined,
+  MailOutlined,
+} from "@ant-design/icons";
 import ConfirmationModal from "@movie-ticket/components/ConfirmModal/ConfirmModalScence";
 import i18n from "@movie-ticket/translation";
+import { Input, Tooltip } from "antd";
 import { CustomErrorComponent } from "@movie-ticket/components/CustomErrorComponent";
 import * as Yup from "yup";
 export interface SigninProps {
@@ -51,7 +57,7 @@ const SigninScence = ({ onSubmit }: SigninProps): JSX.Element => {
                       <div className="account-form">
                         <div className="form-group">
                           {" "}
-                          <TextField
+                          {/* <TextField
                             label="username"
                             name="username"
                             size="small"
@@ -60,12 +66,31 @@ const SigninScence = ({ onSubmit }: SigninProps): JSX.Element => {
                             onChange={(e) => {
                               setFieldValue("username", e.target.value);
                             }}
+                          /> */}
+                          <Input
+                            placeholder={i18n.t(
+                              "main.pageSignup.placeHolder.username"
+                            )}
+                            value={values.username}
+                            onChange={(e) => {
+                              setFieldValue("username", e.target.value);
+                            }}
+                            prefix={
+                              <UserOutlined className="site-form-item-icon" />
+                            }
+                            suffix={
+                              <Tooltip title="Extra information">
+                                <InfoCircleOutlined
+                                  style={{ color: "rgba(0,0,0,.45)" }}
+                                />
+                              </Tooltip>
+                            }
                           />
                           <CustomErrorComponent msg={errors?.username} />
                         </div>
                         <div className="form-group">
                           {" "}
-                          <TextField
+                          {/* <TextField
                             // helperText="Please enter your password"
                             label="password"
                             name="password"
@@ -76,6 +101,16 @@ const SigninScence = ({ onSubmit }: SigninProps): JSX.Element => {
                             onChange={(e) => {
                               setFieldValue("password", e.target.value);
                             }}
+                          /> */}
+                          <Input.Password
+                            name="password"
+                            value={values.password}
+                            onChange={(e) => {
+                              setFieldValue("password", e.target.value);
+                            }}
+                            placeholder={i18n.t(
+                              "main.pageSignup.placeHolder.username"
+                            )}
                           />
                           <CustomErrorComponent msg={errors?.password} />
                         </div>

@@ -1,4 +1,6 @@
 import queryString from "query-string";
+import axios from "axios";
+import fs from "fs";
 export const getSeatSelect = (
   arr0: Array<Boolean>,
   arr1: Array<Boolean>,
@@ -98,7 +100,6 @@ export const convertLineSeatToArray = (
 };
 
 export const onChangePage = (history, search) => (e) => {
-  console.log("onChangePage: ", e);
   const searchObject = queryString.parse(search);
   history.push({
     search: queryString.stringify({
@@ -107,3 +108,56 @@ export const onChangePage = (history, search) => (e) => {
     }),
   });
 };
+
+export const uploadFileToS3 = (presignedPostData, file) => {
+  // create a form obj
+  const formData = new FormData();
+
+  // append the fields in presignedPostData in formData
+  Object.keys(presignedPostData.fields).forEach((key) => {
+    formData.append(key, presignedPostData.fields[key]);
+  });
+
+  // append the file
+  formData.append("file", file);
+  formData.append("acl", "public-read");
+  // post the data on the s3 url
+
+  axios
+    .post(presignedPostData.url, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then(function (response) {
+      console.log("response: ", response);
+    })
+    .catch(function (error) {
+      console.log("Error", error);
+    });
+};
+
+export const uploadFileToS3UsingPresignUrl = async (presignedPutData, file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  return new Promise((resolve, reject) => {
+    axios
+      .put(presignedPutData, file, {
+        headers: { "Content-Type": file.type },
+      })
+      .then((res) => {
+        resolve("success");
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const toBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });

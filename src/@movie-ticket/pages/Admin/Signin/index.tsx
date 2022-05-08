@@ -25,7 +25,7 @@ const Signin: FC<{
           },
         },
       });
-      console.log("result: ", result);
+      
       if (result?.data.adminLogin.access_token) {
         localStorage.setItem(
           ADMIN_TOKEN_KEY,
@@ -38,7 +38,7 @@ const Signin: FC<{
       resetForm();
     } catch (err) {
       popup.error(err);
-      console.log("error: ", err);
+      
       setSubmitting(false);
     }
   };

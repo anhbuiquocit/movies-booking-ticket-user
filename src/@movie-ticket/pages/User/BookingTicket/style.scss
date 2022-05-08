@@ -282,6 +282,9 @@ $color-1: #fff;
       .seat--area {
         width: calc(100% - 60px);
       }
+      .booked-seat {
+        background-color: #cfcfcf;
+      }
       ul {
         -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;

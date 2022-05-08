@@ -9,6 +9,7 @@ import DetailFilm from "@movie-ticket/pages/User/DetailFilm";
 import Modal from "@movie-ticket/components/Modal";
 import UserDetail from "@movie-ticket/pages/User/UserDetail";
 import BookingTicket from "@movie-ticket/pages/User/BookingTicket";
+import PagePayment from "@movie-ticket/pages/User/Payment";
 
 const userRouters = [
   {
@@ -80,6 +81,13 @@ const userRouters = [
     isPrivate: false,
     notProtected: false,
     component: BookingTicket,
+  },
+  {
+    path: Router.paymentPage,
+    exact: true,
+    isPrivate: false,
+    notProtected: false,
+    component: PagePayment,
   },
 ];
 export default userRouters;

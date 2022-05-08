@@ -6,6 +6,9 @@ body {
   line-height: 28px;
   overflow-x: hidden;
   font-family: "Open Sans", sans-serif;
+}
+
+.app_container {
   background: #001232;
 }
 
@@ -45,5 +48,35 @@ a {
       width: 100%;
       padding: 10px;
     }
+  }
+}
+
+.dropzone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: #eeeeee;
+  border-style: dashed;
+  background-color: #fafafa;
+  color: #bdbdbd;
+  outline: none;
+  transition: border 0.24s ease-in-out;
+  min-height: 200px;
+
+  img {
+    max-width: 95%;
+    
+  }
+  ul{
+    padding: 0;
+    margin:0
+  }
+  &:hover {
+    border-color: var(--green);
   }
 }

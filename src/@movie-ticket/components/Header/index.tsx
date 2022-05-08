@@ -20,7 +20,10 @@ export const Header: FC<HeaderProps> = ({
     <div className="grid">
       <div className="header-container">
         <div className="header__logo">
-          <h2>This is logo</h2>
+          <img
+            src={`${require("@movie-ticket/assets/images/alphalogo.png")}`}
+            alt=""
+          />
         </div>
         <ul className="header_nav">
           <li className="header_nav__item">

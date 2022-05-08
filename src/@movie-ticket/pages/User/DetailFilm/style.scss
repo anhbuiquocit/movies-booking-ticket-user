@@ -346,7 +346,10 @@ $color-1: #fff;
     justify-content: center;
     flex-wrap: wrap-reverse;
   }
-
+  .image-description{
+    max-width: 250px;
+    height: 200px;
+  }
   .widget-tags {
     ul {
       display: flex;
@@ -720,5 +723,19 @@ $color-1: #fff;
     font-size: 14px;
     margin-bottom: 0 !important;
     color: #9aace5;
+  }
+}
+.comment-container {
+  display: flex;
+  align-items: center;
+  .comment-content {
+    margin-left: 10px;
+    background-color: #6a6868;
+    padding: 5px 25px;
+    color: #fff;
+    border-radius: 25px;
+    .comment-content__title {
+      font-size: 1.2rem;
+    }
   }
 }

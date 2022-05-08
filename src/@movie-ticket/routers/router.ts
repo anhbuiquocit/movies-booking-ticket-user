@@ -11,6 +11,7 @@ const routers = {
   userDetail: "/user/detail",
   bookingTicket: "/booking_ticket/:filmId",
   bookingTicketRouter: "/booking_ticket/",
+  paymentPage: '/payment',
 
   // Admin router
   adminHome: "/admin",
@@ -19,6 +20,9 @@ const routers = {
   createUser: "/admin/management_user/create_user",
   // createUser: "/create_user",
   detailUser: "/admin/management_user/detail/:id",
+
+  managerFilm: "/admin/managerment_film",
+  createFilm: "/admin/managerment_film/create_film",
 };
 const Router = {
   ...routers,

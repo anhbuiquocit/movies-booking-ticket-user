@@ -21,7 +21,7 @@ const MoviesContainer: FC<moviesProps> = ({
       <div className="movies-grid">
         <div className="movie-thumb c-thumb">
           <a href="#">
-            <img src={require(`../../assets/images/${image}`)} alt="loading" />
+            <img src={image} alt="loading" />
           </a>
         </div>
         <div className="movies-content bg-one">

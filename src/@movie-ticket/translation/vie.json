@@ -1,5 +1,11 @@
 {
   "main": {
+    "home": {
+      "movies": "Phim",
+      "review": "Đánh giá",
+      "manager_user": "Quản lý người dùng",
+      "manager_film": "Quản lý phim"
+    },
     "pageSignin": {
       "username": "Tên đăng nhập",
       "password": "Mật khẩu",
@@ -23,7 +29,8 @@
         "confirmPassword": "Nhập mật khẩu",
         "firstname": "Nhập họ của bạn",
         "lastname": "Nhập tên của bạn",
-        "email": "Nhập địa chỉ email"
+        "email": "Nhập địa chỉ email",
+        "selectTime": "Chọn thời gian"
       }
     },
     "film": {
@@ -70,13 +77,28 @@
       "birthday": "Ngày sinh",
       "password": "Mật khẩu"
     },
+    "managerFilm": {
+      "name": "Tên phim",
+      "description": "Mô tả",
+      "trailler": "trailler",
+      "actor": "Diễn viên",
+      "time": "Thời gian",
+      "director": "Đạo diễn",
+      "image": "Ảnh đại diện",
+      "image1": "Ảnh mô tải 1",
+      "image2": "Ảnh mô tả 2",
+      "image3": "Ảnh mô tả 3"
+    },
     "confirmMessage": "Bạn chắc chắn chứ?",
     "button": {
       "back": "Trở về",
       "createUser": "Tạo người dùng",
+      "createFilm": "Tạo phim",
       "create": "Tạo",
       "update": "Sửa",
-      "delete": "Xóa"
+      "delete": "Xóa",
+      "search": "Tìm kiếm",
+      "bookingTicket": "Đặt vé"
     },
     "status": {
       "active": "Đã kích hoạt",

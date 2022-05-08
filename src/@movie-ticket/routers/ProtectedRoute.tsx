@@ -8,7 +8,7 @@ import { ModalRouteConfig } from "./models/route.model";
 import { Modal } from "antd";
 interface ProtectedRoute {
   component: any;
-  redirect: string;
+  redirect?: string;
   permissionId?: string;
   baseModals?: ModalRouteConfig[];
   modals?: ModalRouteConfig[];
@@ -32,7 +32,6 @@ const ProtectedRoute = ({
             <AdminLayout {...props}>
               <>
                 <Component {...props} />
-                
               </>
             </AdminLayout>
           );
@@ -44,7 +43,9 @@ const ProtectedRoute = ({
             </UserLayout>
           );
         }
-        return <Redirect to={redirect} />;
+        if (redirect) {
+          return <Redirect to={redirect} />;
+        }
       }}
     />
   );

@@ -1,9 +1,10 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import ManagermentUserScence from "./ManagermentUserScence";
 import {
   USER_CONNECTION,
   USER_AGGREGATE,
   DELETE_USER,
+  GET_IMAGE_URL,
 } from "./ManagermentUser.graphql";
 import { onChangePage } from "@movie-ticket/libs/commonFunction";
 import Error from "@movie-ticket/components/Error";
@@ -14,6 +15,8 @@ import { FormikHelpers } from "formik";
 import i18n from "@movie-ticket/translation";
 import { popup } from "@movie-ticket/tools";
 import queryString from "query-string";
+import { User } from "@movie-ticket/constant/modal";
+import _ from "lodash";
 const ManagementUser = ({
   history,
   location: { pathname, search },
@@ -33,11 +36,9 @@ const ManagementUser = ({
     rowsPerPage?: string;
     [x: string]: any;
   } = queryString.parse(search);
+  const [listUser, setListUser] = useState<User[]>();
   const first = parseInt(rowsPerPage, 10);
   const skip = (parseInt(page, 10) - 1) * parseInt(rowsPerPage, 10);
-  console.log("page: ", page);
-  console.log("first", typeof first);
-  console.log("skip: ", skip);
   const [deleteUser] = useMutation(DELETE_USER);
   const { loading, error, data, refetch } = useQuery(USER_CONNECTION, {
     variables: {
@@ -62,9 +63,57 @@ const ManagementUser = ({
       },
     },
   });
+  const [getImageUrl] = useMutation(GET_IMAGE_URL);
+  const getUrlImage = async (key, callback) => {
+    if (!key) callback(null);
+    try {
+      const {
+        data: { imageUrl },
+      } = await getImageUrl({
+        variables: {
+          key,
+        },
+      });
+
+      callback(imageUrl);
+    } catch (error) {
+      callback(null);
+    }
+  };
+  useEffect(() => {
+    refetch();
+  }, []);
+  useEffect(() => {
+    let tempList: Array<User> = [];
+    if (data && data.UsersConnection && data.UsersConnection.length > 0) {
+      for (let i = 0; i < data.UsersConnection.length; i++) {
+        const tempItem: User = Object.assign({}, data.UsersConnection[i], {
+          imageUrl: null,
+        });
+        tempList.push(tempItem);
+        // getUrlImage(data.UsersConnection[i]["image"], (fileUrl) => {
+        //   // data.UsersConnection[i].imageUrl = fileUrl;
+        //   const tempItem: User = Object.assign({}, data.UsersConnection[i], {
+        //     imageUrl: fileUrl,
+        //   });
+        //   tempList.push(tempItem);
+        // });
+      }
+
+      for (let i = 0; i < tempList.length; i++) {
+        getUrlImage(tempList[i].image, (fileUrl) => {
+          tempList[i].imageUrl = fileUrl;
+        });
+      }
+    }
+    // data.UsersConnection = tempList;
+    tempList = _.uniqBy(tempList, "id");
+    // data.UsersConnection = Object.assign({}, tempList);
+    setListUser(tempList);
+  }, [data]);
   if (loading) return <Loading />;
   if (error) return <Error />;
-  console.log("aggregateData: ", aggregateData?.UserAggregate._count._all);
+
   const onSubmit = async (
     values: any,
     { setSubmitting, resetForm }: FormikHelpers<any>
@@ -89,10 +138,10 @@ const ManagementUser = ({
       setSubmitting(false);
     }
   };
-  console.log("data: ", data);
+
   return (
     <ManagermentUserScence
-      users={data?.UsersConnection}
+      users={listUser}
       userCount={parseInt(aggregateData?.UserAggregate._count._all)}
       i18n={i18n}
       onSubmit={onSubmit}

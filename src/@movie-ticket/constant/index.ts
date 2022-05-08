@@ -10,6 +10,7 @@ export const USER_ROLE = {
 export const FORMAT_DATE = "YYYY-MM-DD";
 export const FORMAT_TIME = "HH:mm";
 export const FORMAT_DATE_TIME = "YYYY-MM-DDTHH:mm:ss";
+export const FORMAT_DATE_TIME_UTC = "YYYY-MM-DD[T]HH:mm:ss.SSS[Z]";
 export const ACTION = {
   CREATE: "create",
   UPDATE: "update",

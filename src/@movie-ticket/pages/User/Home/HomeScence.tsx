@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import "./index.scss";
 import MoviesContainer from "@movie-ticket/components/MoviesContainer";
 import imageTest from "@movie-ticket/assets/images/banner01.jpg";
@@ -7,21 +7,21 @@ import { Banner } from "@movie-ticket/components/Banner";
 import { Film } from "@movie-ticket/constant/modal";
 import Search from "@movie-ticket/components/SearchContainer";
 
-export const HomeScence: FC<{ films: Array<Film> }> = ({
+export const HomeScence: FC<{ films: Array<Film>; i18n: any }> = ({
   films,
+  i18n,
 }): JSX.Element => {
   return (
     <>
       <Banner
         image={imageTest}
-        title1="BOOK YOUR TICKETS"
-        title2="FOR MOVIES"
-        description=" Safe, secure, reliable ticketing. Your ticket to live
-        entertainment!"
+        title1="ĐẶT VÉ XEM PHIM"
+        title2=""
+        description="An toàn, bảo mật và tiện lợi!"
       />
-      <div className="search-ticket-section">
+      {/* <div className="search-ticket-section">
         <Search />
-      </div>
+      </div> */}
       <section className="movies-section padding-bottom">
         <div className="grid">
           <div className="grid__row">
@@ -38,15 +38,14 @@ export const HomeScence: FC<{ films: Array<Film> }> = ({
             <div className="grid__column-9">
               <div className="artical-section padding-bottom">
                 <div className="artical-header section-header-1">
-                  <h2 className="title">MOVIES</h2>
+                  <h2 className="title">{i18n.t("main.home.movies")}</h2>
                   <a href="#">View All</a>
                 </div>
                 <div className="grid__row">
                   {films.map((item, key) => (
                     <div className="col-lg-4">
                       <MoviesContainer
-                        // image="movie01.jpg"
-                        image={item.image}
+                        image={item.imageUrl}
                         id={item.id}
                         name={item.name}
                         love="80"
@@ -54,30 +53,6 @@ export const HomeScence: FC<{ films: Array<Film> }> = ({
                       />
                     </div>
                   ))}
-                  {/* <div className="col-lg-4">
-                    <MoviesContainer
-                      image="movie01.jpg"
-                      name="Movies01"
-                      love="80"
-                      rate="80"
-                    />
-                  </div>
-                  <div className="col-lg-4">
-                    <MoviesContainer
-                      image="movie01.jpg"
-                      name="Movies01"
-                      love="80"
-                      rate="80"
-                    />
-                  </div>
-                  <div className="col-lg-4">
-                    <MoviesContainer
-                      image="movie01.jpg"
-                      name="Movies01"
-                      love="80"
-                      rate="80"
-                    />
-                  </div> */}
                 </div>
               </div>
             </div>

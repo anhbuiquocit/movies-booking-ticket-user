@@ -2,14 +2,23 @@
   margin-bottom: 30px;
   overflow: hidden;
   border-radius: 7px 7px 5px 5px;
+  // max-height: 500px;
+  min-height: 500px;
+  img{
+    max-height: 350px;
+    min-height: 350px;
+  }
   .movies-content {
     padding: 0 20px;
+    height: 150px;
+    // overflow: hidden;
     .title {
       padding: 23px 0;
       text-transform: capitalize;
       border-bottom: 1px dashed #11326f;
       font-size: 1.2rem;
       color: #fff;
+      // min-height: 250px;
     }
     .movies-rating-percent {
       display: flex;

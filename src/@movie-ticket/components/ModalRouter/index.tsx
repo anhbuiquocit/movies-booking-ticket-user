@@ -25,7 +25,7 @@ const CustomModal = ({
   title?: string;
   [prop: string]: any;
 }) => {
-  console.log("Log in modalitemi");
+  
   const [isVisible, setIsVisible] = useState(true);
   const handleClose = () => {
     setIsVisible(false);

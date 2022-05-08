@@ -74,3 +74,11 @@ export interface Admin {
   phone?: string;
   [x: string]: any;
 }
+
+export interface Comment {
+  id?: string;
+  user?: User;
+  film?: Film;
+  comment?: string;
+  [x: string]: any;
+}

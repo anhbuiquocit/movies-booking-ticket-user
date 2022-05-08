@@ -14,7 +14,7 @@ const ModalRoutes = ({
 }: ModalRoutesProps & RouteComponentProps) => (
   <>
     {modals.map((modal) => {
-      console.log("Modal in itemi: ", modal);
+      
       const {
         component: Component,
         width,

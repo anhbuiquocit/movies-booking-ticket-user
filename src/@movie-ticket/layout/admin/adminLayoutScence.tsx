@@ -16,8 +16,8 @@ const AdminLayoutScence: FC<AdminLayoutProps> = ({
   handleUserSignOut,
 }) => {
   return (
-    <div className="g-sidenav-show bg-gray-200">
-      <AdminNavMenu adminData={adminData} />
+    <div className="g-sidenav-show bg-gray-200 admin-layout-container">
+      <AdminNavMenu adminData={adminData} i18n={i18n} />
       <main className="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <AdminNavHeader
           adminData={adminData}

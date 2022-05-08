@@ -2,16 +2,26 @@ import React, { FC, useEffect, useState } from "react";
 import { Film, Room, Showing } from "@movie-ticket/constant/modal";
 import { Formik, FormikHelpers, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useApolloClient, useLazyQuery } from "@apollo/client";
 import { FORMAT_TIME } from "@movie-ticket/constant";
 import { CustomErrorComponent } from "@movie-ticket/components/CustomErrorComponent";
+import { FORMAT_DATE_TIME_UTC } from "@movie-ticket/constant";
 import SeatLine from "@movie-ticket/components/SeatLine";
-import { getSeatSelect, calculateMoney } from "@movie-ticket/libs";
+import {
+  getSeatSelect,
+  calculateMoney,
+  convertLineSeatToArray,
+} from "@movie-ticket/libs";
 import { TextField, Autocomplete, Button } from "@mui/material";
 import AdapterJalali from "@date-io/date-fns/";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider/index";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker/index";
 import { Link } from "react-router-dom";
 import ConfirmationModal from "@movie-ticket/components/ConfirmModal/ConfirmModalScence";
+import {
+  SHOWING_CONNECTION,
+  GET_AVAILABLE_BOOKING_TICKET,
+} from "./BookingTicket.graphql";
 import { Input, AutoComplete } from "antd";
 import moment from "moment";
 import { FORMAT_DATE } from "@movie-ticket/constant";
@@ -30,10 +40,13 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
   roomData,
   i18n,
 }): JSX.Element => {
+  const client = useApolloClient();
   const [listShow, setListShow] = useState<Showing[]>([]);
   const [rooms, setRooms] = useState<Room[]>([]);
-
-  console.log("filmmss title: ", film);
+  const [getShowingByDate] = useLazyQuery(SHOWING_CONNECTION);
+  const [getAvailableBookingTicket] = useLazyQuery(
+    GET_AVAILABLE_BOOKING_TICKET
+  );
   useEffect(() => {
     const templist: any[] = [];
     for (let i = 0; i < roomData.length; i++) {
@@ -43,6 +56,7 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
       });
       templist.push(item1);
     }
+
     setRooms(templist);
     if (film && film.Showing && film.Showing.length > 0) {
       let listItem: any[] = [];
@@ -86,8 +100,14 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
           confirm: false,
           date: null,
           rooms,
-          room: {},
+          room: { id: "" },
           show: { price: 0 },
+          listShowing: [
+            {
+              id: "",
+              rangeTime: "",
+            },
+          ],
           lineSeat0: [
             false,
             false,
@@ -216,6 +236,135 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
             false,
             false,
           ],
+          //Line seat Process
+          lineSeatProcess0: [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+          ],
+          lineSeatProcess1: [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+          ],
+          lineSeatProcess2: [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+          ],
+          lineSeatProcess3: [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+          ],
+          lineSeatProcess4: [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+          ],
+          lineSeatProcess5: [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+          ],
+          lineSeatProcess6: [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+          ],
+          lineSeatProcess7: [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+          ],
         }}
         onSubmit={onSubmit}
         validationSchema={validationSchema}
@@ -232,7 +381,6 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
           validateForm,
           setErrors,
         }) => {
-          console.log("values of formik state: ", values);
           return (
             <>
               <section
@@ -272,11 +420,63 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                             <DatePicker
                               // label="Basic example"
                               value={moment(values?.date)}
-                              onChange={(value) => {
+                              onChange={async (value) => {
                                 setFieldValue(
                                   "date",
                                   moment(value).format(FORMAT_DATE)
                                 );
+                                if (values.room && values.room.id) {
+                                  await getShowingByDate({
+                                    variables: {
+                                      where: {
+                                        startDate: {
+                                          equals: moment(value)
+                                            .startOf("day")
+                                            .format(FORMAT_DATE_TIME_UTC),
+                                        },
+                                        RoomId: {
+                                          equals: values.room.id,
+                                        },
+                                      },
+                                    },
+                                  })
+                                    .then((res) => {
+                                      if (
+                                        res &&
+                                        res.data &&
+                                        res.data.showingConnection &&
+                                        res.data.showingConnection.length > 0
+                                      ) {
+                                        let tempList: Showing[] = [];
+                                        for (
+                                          let i = 0;
+                                          i < res.data.showingConnection.length;
+                                          i += 1
+                                        ) {
+                                          const item =
+                                            res.data.showingConnection[i];
+                                          const tempObj = Object.assign(
+                                            {},
+                                            item,
+                                            {
+                                              rangeTime: `${moment
+                                                .utc(item.startTime)
+                                                .format(FORMAT_TIME)} - ${moment
+                                                .utc(item.endTime)
+                                                .format(FORMAT_TIME)}`,
+                                            }
+                                          );
+                                          tempList.push(tempObj);
+                                        }
+                                        setFieldValue("listShowing", tempList);
+                                      } else {
+                                        setFieldValue("listShowing", []);
+                                      }
+                                    })
+                                    .catch((err) => {
+                                      console.log("error: ", err);
+                                    });
+                                }
                               }}
                               renderInput={(params) => (
                                 <TextField {...params} sx={{ width: 150 }} />
@@ -285,43 +485,97 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                             {/* <CustomErrorComponent msg={errors.date} /> */}
                           </div>
                         </LocalizationProvider>
-                        {/* <Autocomplete
-                          limitTags={2}
-                          id="multiple-limit-tags"
-                          options={listShow}
-                          getOptionLabel={(option) => option.date}
-                          onChange={(event, value) => {
-                            setFieldValue("date", value);
-                          }}
-                          renderInput={(params) => (
-                            <TextField
-                              {...params}
-                              label={i18n.t("main.bookingTicket.date")}
-                              placeholder={i18n.t("main.placeHolder.date")}
-                            />
-                          )}
-                          sx={{
-                            width: "250px",
-                            bgcolor: "#fff",
-                            color: "#fff",
-                          }}
-                        /> */}
                       </div>
                       <div className="time-container">
                         <Autocomplete
                           limitTags={2}
                           id="multiple-limit-tags"
-                          options={listShow}
+                          options={values.listShowing}
                           getOptionLabel={(option) => option.rangeTime}
-                          onChange={(event, value) => {
+                          onChange={async (event, value) => {
                             setFieldValue("show", value);
+                            await getAvailableBookingTicket({
+                              variables: {
+                                where: {
+                                  bookingItem: {
+                                    every: {
+                                      ShowingId: {
+                                        equals: value?.id,
+                                      },
+                                      seat: {
+                                        is: {
+                                          room: {
+                                            is: {
+                                              id: {
+                                                equals: values.room.id,
+                                              },
+                                            },
+                                          },
+                                        },
+                                      },
+                                    },
+                                  },
+                                },
+                              },
+                            }).then((res) => {
+                              if (
+                                res.data.bookingConnection &&
+                                res.data.bookingConnection.length > 0
+                              ) {
+                                const availableSeat = JSON.parse(
+                                  res.data.bookingConnection[0].lineSeatMatrix
+                                );
+                                setFieldValue("lineSeat0", availableSeat[0]);
+                                setFieldValue("lineSeat1", availableSeat[1]);
+                                setFieldValue("lineSeat2", availableSeat[2]);
+                                setFieldValue("lineSeat3", availableSeat[3]);
+                                setFieldValue("lineSeat4", availableSeat[4]);
+                                setFieldValue("lineSeat5", availableSeat[5]);
+                                setFieldValue("lineSeat6", availableSeat[6]);
+                                setFieldValue("lineSeat7", availableSeat[7]);
+
+                                // set for list seat process
+                                setFieldValue(
+                                  "lineSeatProcess0",
+                                  availableSeat[0]
+                                );
+                                setFieldValue(
+                                  "lineSeatProcess1",
+                                  availableSeat[1]
+                                );
+                                setFieldValue(
+                                  "lineSeatProcess2",
+                                  availableSeat[2]
+                                );
+                                setFieldValue(
+                                  "lineSeatProcess3",
+                                  availableSeat[3]
+                                );
+                                setFieldValue(
+                                  "lineSeatProcess4",
+                                  availableSeat[4]
+                                );
+                                setFieldValue(
+                                  "lineSeatProcess5",
+                                  availableSeat[5]
+                                );
+                                setFieldValue(
+                                  "lineSeatProcess6",
+                                  availableSeat[6]
+                                );
+                                setFieldValue(
+                                  "lineSeatProcess7",
+                                  availableSeat[7]
+                                );
+                              }
+                            });
                           }}
                           renderInput={(params) => (
                             <TextField
                               {...params}
                               label={i18n.t("main.bookingTicket.time")}
                               placeholder={i18n.t(
-                                "main.placeHolder.selectTime"
+                                "main.bookingTicket.placeHolder.selectTime"
                               )}
                             />
                           )}
@@ -340,8 +594,55 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                         dropdownMatchSelectWidth={150}
                         style={{ width: 150 }}
                         options={values.rooms}
-                        onChange={(e, value) => {
+                        onChange={async (e, value) => {
                           setFieldValue("room", value);
+                          if (values.date) {
+                            await getShowingByDate({
+                              variables: {
+                                where: {
+                                  startDate: {
+                                    equals: moment(values.date)
+                                      .startOf("day")
+                                      .format(FORMAT_DATE_TIME_UTC),
+                                  },
+                                  RoomId: {
+                                    equals: value["id"],
+                                  },
+                                },
+                              },
+                            })
+                              .then((res) => {
+                                if (
+                                  res &&
+                                  res.data &&
+                                  res.data.showingConnection &&
+                                  res.data.showingConnection.length > 0
+                                ) {
+                                  let tempList: Showing[] = [];
+                                  for (
+                                    let i = 0;
+                                    i < res.data.showingConnection.length;
+                                    i += 1
+                                  ) {
+                                    const item = res.data.showingConnection[i];
+                                    const tempObj = Object.assign({}, item, {
+                                      rangeTime: `${moment
+                                        .utc(item.startTime)
+                                        .format(FORMAT_TIME)} - ${moment
+                                        .utc(item.endTime)
+                                        .format(FORMAT_TIME)}`,
+                                    });
+                                    tempList.push(tempObj);
+                                  }
+                                  setFieldValue("listShowing", tempList);
+                                } else {
+                                  setFieldValue("listShowing", []);
+                                }
+                              })
+                              .catch((err) => {
+                                console.log("error: ", err);
+                              });
+                          }
                         }}
                       >
                         <Input.Search
@@ -393,6 +694,7 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                               values={values}
                               setFieldValue={setFieldValue}
                               name={`lineSeat${index}`}
+                              nameProcess={`lineSeatProcess${index}`}
                             />
                           </li>
                         ))}

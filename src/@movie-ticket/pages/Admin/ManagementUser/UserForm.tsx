@@ -4,7 +4,15 @@ import { Formik, FormikHelpers, Form, ErrorMessage } from "formik";
 import { Input } from "antd";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
 import { CustomErrorComponent } from "@movie-ticket/components/CustomErrorComponent";
-import { Button, Switch, Dropdown, Select, Breadcrumb, Upload } from "antd";
+import {
+  Button,
+  Switch,
+  Dropdown,
+  Select,
+  Breadcrumb,
+  Upload,
+  message,
+} from "antd";
 import AdapterJalali from "@date-io/date-fns/";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider/index";
 import ConfirmationModal from "@movie-ticket/components/ConfirmModal/ConfirmModalScence";
@@ -16,7 +24,11 @@ import Routers from "@movie-ticket/routers/router";
 import * as Yup from "yup";
 import UploadOutlinedIcon from "@mui/icons-material/UploadOutlined";
 import ImgCrop from "antd-img-crop";
+import axios from "axios";
+import { DropzoneArea } from "react-mui-dropzone";
 import { User } from "@movie-ticket/constant/modal";
+
+const { Dragger } = Upload;
 interface UserFormProps {
   onSubmit: (values: any, helpers: FormikHelpers<any>) => void;
   i18n: any;
@@ -30,6 +42,11 @@ const UserForm: FC<UserFormProps> = ({
   userData,
   isDetailUser,
 }) => {
+  const dummyRequest = ({ file, onSuccess }) => {
+    setTimeout(() => {
+      onSuccess("ok");
+    }, 0);
+  };
   const validationSchema = Yup.object().shape({
     firstname: Yup.string()
       .nullable()
@@ -67,7 +84,6 @@ const UserForm: FC<UserFormProps> = ({
     action: "//jsonplaceholder.typicode.com/posts/",
     listType: "picture",
     previewFile(file) {
-      console.log("Your upload file:", file);
       // Your process logic. Here we just mock to the same file
       return fetch("https://next.json-generator.com/api/json/get/4ytyBoLK8", {
         method: "POST",
@@ -78,6 +94,35 @@ const UserForm: FC<UserFormProps> = ({
     },
   };
   const closeModal = () => {};
+  const uploadImage = async (options) => {
+    const { onSuccess, onError, file, onProgress } = options;
+
+    const fmData = new FormData();
+    const config = {
+      headers: { "content-type": "multipart/form-data" },
+      onUploadProgress: (event) => {
+        const percent = Math.floor((event.loaded / event.total) * 100);
+        // setProgress(percent);
+        // if (percent === 100) {
+        //   setTimeout(() => setProgress(0), 1000);
+        // }
+        onProgress({ percent: (event.loaded / event.total) * 100 });
+      },
+    };
+    fmData.append("image", file);
+    try {
+      const res = await axios.post(
+        "https://jsonplaceholder.typicode.com/posts",
+        fmData,
+        config
+      );
+
+      onSuccess("Ok");
+    } catch (err) {
+      const error = new Error("Some error");
+      onError({ err });
+    }
+  };
   return (
     <>
       <Breadcrumb>
@@ -269,7 +314,6 @@ const UserForm: FC<UserFormProps> = ({
                         value={values.role}
                         style={{ width: 120 }}
                         onChange={(e) => {
-                          console.log("Value: ", e);
                           setFieldValue("role", e);
                         }}
                       >
@@ -288,33 +332,13 @@ const UserForm: FC<UserFormProps> = ({
                       Ảnh đại diện
                     </div>
                     <div className="col-sm">
-                      <ImgCrop rotate>
-                        <Upload
-                          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                          listType="picture-card"
-                          fileList={values.fileImage}
-                          onChange={({ file }) => {
-                            console.log("file: ", file);
-                            setFieldValue("fileImage", file);
-                          }}
-                          onPreview={async (file: any) => {
-                            let src = file.url;
-                            if (!src) {
-                              src = await new Promise((resolve) => {
-                                const reader = new FileReader();
-                                reader.readAsDataURL(file.originFileObj);
-                                reader.onload = () => resolve(reader.result);
-                              });
-                            }
-                            const image = new Image();
-                            image.src = src;
-                            const imgWindow = window.open(src);
-                            imgWindow?.document.write(image.outerHTML);
-                          }}
-                        >
-                          upload
-                        </Upload>
-                      </ImgCrop>
+                      <input
+                        type="file"
+                        name="fileimage"
+                        onChange={(file) => {
+                          setFieldValue("fileImage", file.target.files);
+                        }}
+                      />
                     </div>
                   </div>
                 </div>

@@ -12,8 +12,9 @@ import routers from "@movie-ticket/routers/router";
 import { Admin } from "@movie-ticket/constant/modal";
 interface AdminNavProps {
   adminData?: Admin;
+  i18n?: any;
 }
-const AdminNavMenu: FC<AdminNavProps> = ({ adminData }) => {
+const AdminNavMenu: FC<AdminNavProps> = ({ adminData, i18n }) => {
   return (
     <aside
       className="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
@@ -37,7 +38,7 @@ const AdminNavMenu: FC<AdminNavProps> = ({ adminData }) => {
             alt="main_logo"
           />
           <span className="ms-1 font-weight-bold text-white">
-            Material Dashboard 2
+            Admin Dasboard
           </span>
         </a>
       </div>
@@ -91,7 +92,17 @@ const AdminNavMenu: FC<AdminNavProps> = ({ adminData }) => {
                 >
                   {" "}
                   {/* <Typography></Typography> */}
-                  Quản lý người dùng
+                  {i18n.t("main.home.manager_user")}
+                </Link>
+              </AccordionDetails>
+              <AccordionDetails>
+                <Link
+                  to={routers.managerFilm}
+                  className="nav-link-text ms-1 color-white"
+                >
+                  {" "}
+                  {/* <Typography></Typography> */}
+                  {i18n.t("main.home.manager_film")}
                 </Link>
               </AccordionDetails>
             </Accordion>

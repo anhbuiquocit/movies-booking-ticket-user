@@ -31,3 +31,9 @@ export const FILM_CONNECTION = gql`
     }
   }
 `;
+
+export const GET_IMAGE_URL = gql`
+  mutation GetImageUrl($key: String!) {
+    imageUrl(key: $key)
+  }
+`;

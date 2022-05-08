@@ -41,3 +41,35 @@ export const USER_BOOKING_TICKET = gql`
     userBookingTicket(data: $data)
   }
 `;
+
+export const GET_AVAILABLE_BOOKING_TICKET = gql`
+  query BookingConnection($where: BookingWhereInput) {
+    bookingConnection(where: $where) {
+      id
+      amount
+      price
+      lineSeatMatrix
+      createdAt
+      updatedAt
+      user {
+        id
+        email
+      }
+    }
+  }
+`;
+
+export const SHOWING_CONNECTION = gql`
+  query ShowingConnection($where: ShowingWhereInput) {
+    showingConnection(where: $where) {
+      id
+      createdAt
+      updatedAt
+      startDate
+      endDate
+      startTime
+      endTime
+      price
+    }
+  }
+`;

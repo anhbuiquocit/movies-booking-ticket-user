@@ -1,45 +1,37 @@
-import { User } from "@movie-ticket/constant/modal";
+import { Film, User } from "@movie-ticket/constant/modal";
 import React, { FC } from "react";
 import moment from "moment";
-import { Input, Pagination, Button, Avatar, Image } from "antd";
+import { Input, Pagination, Button } from "antd";
 import { FORMAT_DATE, ACTION } from "@movie-ticket/constant";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Formik, FormikHelpers, Form, ErrorMessage } from "formik";
 import ConfirmationModal from "@movie-ticket/components/ConfirmModal/ConfirmModalScence";
 import Routers from "@movie-ticket/routers/router";
-import ModalLink from "@movie-ticket/components/ModalLink";
 import queryString from "query-string";
 import { Link } from "react-router-dom";
-interface ManagermentUserScenceProps {
-  users?: Array<User>;
+interface ManagermentFilmScenceProps {
   i18n: any;
   onSubmit: (values: any, helpers: FormikHelpers<any>) => void;
-  userCount?: number;
   onChangePage: (history: any, search: any) => void;
   rowsPerPage?: number;
   history: any;
   search: any;
+  data: Array<Film>;
 }
-const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
-  users,
+const ManagerFilmScence: FC<ManagermentFilmScenceProps> = ({
   i18n,
   onSubmit,
-  userCount,
   onChangePage,
   rowsPerPage,
   history,
   search,
+  data,
 }) => {
   return (
     <div className="row">
       <Formik
         enableReinitialize
         initialValues={{
-          firstname: "",
-          lastname: "",
-          username: "",
-          password: "",
-          birthday: "",
           email: "",
           confirmPassword: "",
           confirm: false,
@@ -80,25 +72,26 @@ const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
                         placeholder="email...."
                         value={values.emailSearch}
                         onChange={(e) => {
+                          
                           setFieldValue("emailSearch", e.target.value);
                         }}
                         style={{ marginBottom: "1rem" }}
                       />
                       <Link
                         to={{
-                          pathname: Routers.managementUser,
+                          pathname: Routers.managerFilm,
                           search: queryString.stringify({
                             emailSearch: values.emailSearch,
                           }),
                         }}
                         className="btn btn--normal"
                       >
-                        Tìm kiếm
+                        {i18n.t("main.button.search")}
                       </Link>
                     </div>
                     <div className="button-create-user-container">
-                      <Link to={Routers.createUser} className="btn btn--normal">
-                        {i18n.t("main.button.createUser")}
+                      <Link to={Routers.createFilm} className="btn btn--normal">
+                        {i18n.t("main.button.createFilm")}
                       </Link>
                     </div>
                   </div>
@@ -109,23 +102,23 @@ const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
                       <thead>
                         <tr>
                           <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                            Author
+                            {i18n.t("main.managerFilm.name")}
                           </th>
                           <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                            Function
+                            {i18n.t("main.managerFilm.trailler")}
                           </th>
                           <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                            Status
+                            {i18n.t("main.managerFilm.actor")}
                           </th>
                           <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                            Employed
+                            {i18n.t("main.managerFilm.time")}
                           </th>
                           <th className="text-secondary opacity-7"></th>
                           <th className="text-secondary opacity-7"></th>
                         </tr>
                       </thead>
                       <tbody>
-                        {users?.map((item, index) => (
+                        {data.map((item, index) => (
                           <tr>
                             <td>
                               <div className="d-flex px-2 py-1">
@@ -136,37 +129,24 @@ const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
                                     alt="user1"
                                   />
                                 </div> */}
-                                <Avatar
-                                  src={
-                                    <Image
-                                      // src="https://joeschmoe.io/api/v1/random"
-                                      src={`${
-                                        item.imageUrl ? item.imageUrl : ""
-                                      }`}
-                                      style={{ width: 32, padding: "3px 0",  }}
-                                    />
-                                  }
-                                >
-                                  {/* {!item.imageUrl ? item.lastname : ""} */}
-                                </Avatar>
                                 <div className="d-flex flex-column justify-content-center">
-                                  <h6 className="mb-0 text-sm">{`${item.firstname} ${item.lastname}`}</h6>
+                                  <h6 className="mb-0 text-sm">{`${item.name}`}</h6>
                                   <p className="text-xs text-secondary mb-0">
-                                    {item.email}
+                                    {item.trailler}
                                   </p>
                                 </div>
                               </div>
                             </td>
                             <td>
                               <p className="text-xs font-weight-bold mb-0">
-                                {item.role}
+                                {item.actor}
                               </p>
                               <p className="text-xs text-secondary mb-0">
                                 Organization
                               </p>
                             </td>
                             <td className="align-middle text-center text-sm">
-                              {item.active ? (
+                              {/* {item.active ? (
                                 <span className="badge badge-sm bg-gradient-success">
                                   {i18n.t("main.status.active")}
                                 </span>
@@ -174,11 +154,13 @@ const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
                                 <span className="badge badge-sm bg-gradient-secondary">
                                   {i18n.t("main.status.notActive")}
                                 </span>
-                              )}
+                              )} */}
+                              {item.actor}
                             </td>
                             <td className="align-middle text-center">
                               <span className="text-secondary text-xs font-weight-bold">
-                                {moment(item.createAt).format(FORMAT_DATE)}
+                                {/* {moment(item.createAt).format(FORMAT_DATE)} */}
+                                {item.time}
                               </span>
                             </td>
                             <td className="align-middle">
@@ -188,7 +170,7 @@ const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
                                 })}
                                 className="text-secondary font-weight-bold text-xs"
                               >
-                                Edit
+                                {i18n.t("main.button.update")}
                               </Link>
                             </td>
                             <td className="align-middle">
@@ -214,7 +196,7 @@ const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
                     </table>
                     <Pagination
                       defaultCurrent={1}
-                      total={userCount}
+                      // total={userCount}
                       pageSize={rowsPerPage}
                       className="pt-20"
                       // onChange={onChangePage}
@@ -230,5 +212,4 @@ const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
     </div>
   );
 };
-
-export default ManagermentUserScence;
+export default ManagerFilmScence;

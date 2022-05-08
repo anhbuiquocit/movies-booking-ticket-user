@@ -26,7 +26,7 @@ const NewLater = (props: Props) => {
             <h3 className="title">TO GET EXCLUSIVE BENIFITS</h3>
             {/* <form onSubmit={handleSubmit(onSubmit)} className="newlater-form"> */}
               <Input className="email-intput" size="large"/>
-              <Button className="button-subcribe">Subcribe</Button>
+              {/* <Button className="button-subcribe">Subcribe</Button> */}
             {/* </form> */}
           </div>
         </div>
