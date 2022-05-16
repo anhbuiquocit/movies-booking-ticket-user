@@ -31,7 +31,7 @@ export const Header: FC<HeaderProps> = ({
           </li>
           <li className="header_nav__item">
             <a href="/list_film">
-              Phim{" "}
+              Danh sách phim{" "}
               {/* <i className="fa-solid fa-chevron-down icon_white-color"></i> */}
             </a>
             {/* <ul className="sub_nav">
