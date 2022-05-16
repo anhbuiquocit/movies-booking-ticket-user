@@ -1,16 +1,7 @@
 import React, { FC } from "react";
 import { Formik, FormikHelpers, Form, ErrorMessage } from "formik";
 import { CustomErrorComponent } from "@movie-ticket/components/CustomErrorComponent";
-import {
-  Button,
-  Switch,
-  Dropdown,
-  Select,
-  Breadcrumb,
-  Upload,
-  message,
-  Input,
-} from "antd";
+import { Button, Breadcrumb, InputNumber, Input } from "antd";
 import Routers from "@movie-ticket/routers/router";
 import { Link } from "react-router-dom";
 import ConfirmationModal from "@movie-ticket/components/ConfirmModal/ConfirmModalScence";
@@ -18,12 +9,58 @@ import UploadOutlinedIcon from "@mui/icons-material/UploadOutlined";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker/index";
 import Dropzone from "react-dropzone";
 import * as Yup from "yup";
+import { Film } from "@movie-ticket/constant/modal";
+
+const { TextArea } = Input;
 interface FilmForm {
   onSubmit: (values: any, helpers: FormikHelpers<any>) => void;
   i18n: any;
   isCreate: boolean;
+  data?: Film;
 }
-const FilmForm: FC<FilmForm> = ({ onSubmit, i18n, isCreate }) => {
+const FilmForm: FC<FilmForm> = ({ onSubmit, i18n, isCreate, data }) => {
+  console.log("data film: ", data);
+  const validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .trim()
+      .nullable()
+      .required(
+        `${i18n.t("main.managerFilm.name")} ${i18n.t(
+          "main.validation.required"
+        )}`
+      ),
+    trailler: Yup.string()
+      .trim()
+      .nullable()
+      .required(
+        `${i18n.t("main.managerFilm.trailler")} ${i18n.t(
+          "main.validation.required"
+        )}`
+      ),
+    director: Yup.string()
+      .trim()
+      .nullable()
+      .required(
+        `${i18n.t("main.managerFilm.director")} ${i18n.t(
+          "main.validation.required"
+        )}`
+      ),
+    description: Yup.string()
+      .trim()
+      .nullable()
+      .required(
+        `${i18n.t("main.managerFilm.description")} ${i18n.t(
+          "main.validation.required"
+        )}`
+      ),
+    time: Yup.number()
+      .nullable()
+      .required(
+        `${i18n.t("main.managerFilm.time")} ${i18n.t(
+          "main.validation.required"
+        )}`
+      ),
+  });
   return (
     <>
       <Breadcrumb>
@@ -32,7 +69,9 @@ const FilmForm: FC<FilmForm> = ({ onSubmit, i18n, isCreate }) => {
           <Link to={Routers.adminHome}>DashBoard</Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <Link to={Routers.managerFilm}>Quản lý phim</Link>
+          <Link to={Routers.managerFilm}>
+            {i18n.t("main.home.manager_film")}
+          </Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
           {/* {isDetailUser ? (
@@ -40,7 +79,9 @@ const FilmForm: FC<FilmForm> = ({ onSubmit, i18n, isCreate }) => {
           ) : (
             <Link to={Routers.createUser}>Tạo người dùng</Link>
           )} */}
-          <Link to={Routers.createFilm}>Tạo phim</Link>
+          <Link to={Routers.createFilm}>
+            {isCreate ? i18n.t("main.managerFilm.createFilm"):i18n.t("main.managerFilm.updateFilm")}
+          </Link>
         </Breadcrumb.Item>
       </Breadcrumb>
       <h2>Màn hình tạo phim</h2>
@@ -48,18 +89,18 @@ const FilmForm: FC<FilmForm> = ({ onSubmit, i18n, isCreate }) => {
         enableReinitialize
         initialValues={{
           confirm: false,
-          name: "",
-          trailler: "",
-          director: "",
-          actor: "",
-          description: "",
-          time: "",
+          name: data?.name || "",
+          trailler: data?.trailler || "",
+          director: data?.director || "",
+          actor: data?.actor || "",
+          description: data?.description || "",
+          time: data?.time || 0,
           image: [],
           image1: [],
           image2: [],
           image3: [],
         }}
-        // validationSchema={validationSchema}
+        validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
         {({
@@ -84,7 +125,7 @@ const FilmForm: FC<FilmForm> = ({ onSubmit, i18n, isCreate }) => {
                     </div>
                     <div className="col-sm">
                       <Input
-                        // value={values.email}
+                        value={values.name}
                         name="name"
                         onChange={(e) => {
                           setFieldValue("name", e.target.value);
@@ -103,7 +144,7 @@ const FilmForm: FC<FilmForm> = ({ onSubmit, i18n, isCreate }) => {
                     </div>
                     <div className="col-sm">
                       <Input
-                        // value={values.email}
+                        value={values.trailler}
                         name="trailler"
                         onChange={(e) => {
                           setFieldValue("trailler", e.target.value);
@@ -121,9 +162,10 @@ const FilmForm: FC<FilmForm> = ({ onSubmit, i18n, isCreate }) => {
                       {i18n.t("main.managerFilm.description")}
                     </div>
                     <div className="col-sm">
-                      <Input
-                        // value={values.email}
+                      <TextArea
+                        value={values.description}
                         name="description"
+                        rows={4}
                         onChange={(e) => {
                           setFieldValue("description", e.target.value);
                         }}
@@ -141,7 +183,7 @@ const FilmForm: FC<FilmForm> = ({ onSubmit, i18n, isCreate }) => {
                     </div>
                     <div className="col-sm">
                       <Input
-                        // value={values.email}
+                        value={values.director}
                         name="director"
                         onChange={(e) => {
                           setFieldValue("director", e.target.value);
@@ -160,7 +202,7 @@ const FilmForm: FC<FilmForm> = ({ onSubmit, i18n, isCreate }) => {
                     </div>
                     <div className="col-sm">
                       <Input
-                        // value={values.email}
+                        value={values.actor}
                         name="actor"
                         onChange={(e) => {
                           setFieldValue("actor", e.target.value);
@@ -178,11 +220,17 @@ const FilmForm: FC<FilmForm> = ({ onSubmit, i18n, isCreate }) => {
                       {i18n.t("main.managerFilm.time")}
                     </div>
                     <div className="col-sm">
-                      <Input
-                        // value={values.email}
-                        name="time"
+                      <InputNumber
+                        placeholder="VND 1000"
+                        formatter={(value) =>
+                          `phút ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                        }
+                        step={30}
+                        min={0}
+                        style={{ width: "150px" }}
+                        value={values.time}
                         onChange={(e) => {
-                          setFieldValue("time", e.target.value);
+                          setFieldValue(`time`, e);
                         }}
                       />
                       {/* <CustomErrorComponent msg={errors.email} /> */}

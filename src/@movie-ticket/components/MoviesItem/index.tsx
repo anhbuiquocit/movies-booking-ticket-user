@@ -1,6 +1,11 @@
 import "./styles.scss";
 import React, { FC } from "react";
-export const MoviesItem: FC = () => {
+import { Film } from "@movie-ticket/constant/modal";
+interface MoviesItemProps {
+  data: Film;
+}
+export const MoviesItem: FC<MoviesItemProps> = ({ data }) => {
+  console.log("data firlm in movies item: ", data);
   return (
     <div className="movie-list">
       <div className="movie-thumb">
@@ -11,26 +16,22 @@ export const MoviesItem: FC = () => {
           //   backgroundImage: `url(${require("../../assets/images/movie01.jpg")})`,
           // }}
         >
-          <img
-            src={require("../../assets/images/movie01.jpg")}
-            alt=""
-            className="img-item m-0"
-          />
+          <img src={data.imageUrl} alt="Loading" className="img-item m-0" />
         </a>
       </div>
       <div className="movie-content">
         <h5 className="title">
-          <a href="#">Alone</a>
+          <a href="#">{data.name}</a>
         </h5>
-        <p className="duration">2hrs 50 min</p>
+        <p className="duration">{`${data.time ? data.time : ""}`}</p>
         <div className="movie-tags">
           <a href="">action</a>
           <a href=""></a>
           <a href=""></a>
         </div>
         <div className="release">
-          <span>Release Date: </span>
-          <a href="#">November 8, 2020</a>
+          <span>Đạo diễn: </span>
+          <a href="#">{data.director}</a>
         </div>
         <ul className="movie-rating-percent">
           <li>
@@ -65,7 +66,7 @@ export const MoviesItem: FC = () => {
                 <div className="thumb">
                   <i className="fa-solid fa-video"></i>
                 </div>
-                  <span>Watching viedeo</span>
+                <span>Watching viedeo</span>
               </a>
             </div>
           </div>

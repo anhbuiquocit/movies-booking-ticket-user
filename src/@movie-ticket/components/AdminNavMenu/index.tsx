@@ -105,17 +105,39 @@ const AdminNavMenu: FC<AdminNavProps> = ({ adminData, i18n }) => {
                   {i18n.t("main.home.manager_film")}
                 </Link>
               </AccordionDetails>
+              <AccordionDetails>
+                <Link
+                  to={routers.manageShowing}
+                  className="nav-link-text ms-1 color-white"
+                >
+                  {" "}
+                  {/* <Typography></Typography> */}
+                  {i18n.t("main.home.manager_showing")}
+                </Link>
+              </AccordionDetails>
+              <AccordionDetails>
+                <Link
+                  to={routers.managePromotion}
+                  className="nav-link-text ms-1 color-white"
+                >
+                  {" "}
+                  {/* <Typography></Typography> */}
+                  {i18n.t("main.home.manager_promotion")}
+                </Link>
+              </AccordionDetails>
             </Accordion>
           </li>
           <li className="nav-item">
-            <a className="nav-link text-white " href="./pages/billing.html">
+            <a className="nav-link text-white " href={routers.statistical}>
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="material-icons opacity-10">receipt_long</i>
               </div>
-              <span className="nav-link-text ms-1">Billing</span>
+              <span className="nav-link-text ms-1">
+                {i18n.t("main.home.statistical")}
+              </span>
             </a>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a
               className="nav-link text-white "
               href="./pages/virtual-reality.html"
@@ -146,7 +168,7 @@ const AdminNavMenu: FC<AdminNavProps> = ({ adminData, i18n }) => {
               </div>
               <span className="nav-link-text ms-1">Notifications</span>
             </a>
-          </li>
+          </li> */}
           <li className="nav-item mt-3">
             <h6 className="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">
               Account pages
@@ -165,17 +187,19 @@ const AdminNavMenu: FC<AdminNavProps> = ({ adminData, i18n }) => {
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="material-icons opacity-10">login</i>
               </div>
-              <span className="nav-link-text ms-1">Sign In</span>
+              <span className="nav-link-text ms-1">
+                {i18n.t("main.home.logout")}
+              </span>
             </a>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <a className="nav-link text-white " href="./pages/sign-up.html">
               <div className="text-white text-center me-2 d-flex align-items-center justify-content-center">
                 <i className="material-icons opacity-10">assignment</i>
               </div>
               <span className="nav-link-text ms-1">Sign Up</span>
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </aside>

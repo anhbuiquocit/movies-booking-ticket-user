@@ -11,7 +11,8 @@ const routers = {
   userDetail: "/user/detail",
   bookingTicket: "/booking_ticket/:filmId",
   bookingTicketRouter: "/booking_ticket/",
-  paymentPage: '/payment',
+  paymentPage: "/payment/:id",
+  paymentRouter: "/payment/",
 
   // Admin router
   adminHome: "/admin",
@@ -23,6 +24,17 @@ const routers = {
 
   managerFilm: "/admin/managerment_film",
   createFilm: "/admin/managerment_film/create_film",
+  updateFilm: "/admin/managerment_film/detail/:id",
+
+  manageShowing: "/admin/managerment_showing",
+  createShowing: "/admin/managerment_showing/create_showing",
+  detailShowing: "/admin/managerment_showing/detail/:id",
+
+  managePromotion: "/admin/managerment_promotion",
+  createPromotion: "/admin/managerment_promotion/create_promotion",
+  detailPromotion: "/admin/managerment_promotion/detail/:id",
+
+  statistical: "/admin/stantistical",
 };
 const Router = {
   ...routers,

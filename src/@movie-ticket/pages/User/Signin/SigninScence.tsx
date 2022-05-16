@@ -3,6 +3,7 @@ import "./style.css";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Formik, FormikHelpers, Form } from "formik";
+import Router from "@movie-ticket/routers/router";
 import {
   InfoCircleOutlined,
   UserOutlined,
@@ -51,8 +52,8 @@ const SigninScence = ({ onSubmit }: SigninProps): JSX.Element => {
                   <div className="padding-top padding-bottom">
                     <div className="account-area">
                       <div className="section-header-3">
-                        <span className="cate">Hello</span>
-                        <h2 className="title">WELCOME BACK </h2>
+                        <span className="cate">Xin chào</span>
+                        <h2 className="title">Chào mừng bạn quay trở lại </h2>
                       </div>
                       <div className="account-form">
                         <div className="form-group">
@@ -159,8 +160,8 @@ const SigninScence = ({ onSubmit }: SigninProps): JSX.Element => {
                         </div>
                       </div>
                       <div className="option">
-                        Don't have an account?{" "}
-                        <a href="sign-in.html">Sign up now</a>
+                        Bạn chưa có tài khoản?{" "}
+                        <a href={Router.userSignup}>Đăng ký ngay</a>
                       </div>
                       <div className="or">
                         <span>Or</span>

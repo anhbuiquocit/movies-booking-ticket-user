@@ -1,0 +1,207 @@
+$white-color: #fff;
+.movie-facility {
+  overflow: hidden;
+  .checkout-widget {
+    padding: 30px;
+    margin-bottom: 30px;
+    background: #032055;
+    p {
+      color: #9aace5;
+    }
+    .checkout-contact {
+      .title {
+        border-bottom: 1px dashed #11326f;
+        padding-bottom: 23px;
+        margin-bottom: 20px;
+      }
+    }
+    .payment-option {
+      margin: -15px;
+      margin-top: 5px;
+      margin-bottom: 25px;
+      li {
+        padding: 15px;
+        .active {
+          a {
+            border-color: #4441e7;
+            border-width: 2px;
+            position: relative;
+          }
+          &::before {
+            background-color: #032055;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            top: -20px;
+            right: -20px;
+            content: "";
+            position: absolute;
+          }
+          &::after {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            top: -15px;
+            right: -15px;
+            background: url(../../../assets//images/check.png) no-repeat center
+              center;
+            background-size: cover;
+            content: "";
+            position: absolute;
+          }
+        }
+        a {
+          width: 90px;
+          border-radius: 10px;
+          border: 1px solid #11326f;
+          text-align: center;
+          padding: 20px 10px 18px;
+          height: 100%;
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+        }
+      }
+    }
+    .checkout-card {
+      .subtitle {
+        margin-bottom: 14px;
+      }
+      .payment-card-form {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        margin-bottom: -14px;
+        .form-group {
+          position: relative;
+          margin-bottom: 14px;
+          width: 100%;
+        }
+      }
+    }
+  }
+  .title {
+    color: $white-color;
+  }
+}
+.booking-summery {
+  padding: 30px;
+  border: 1px solid #11326f;
+  border-bottom-style: dashed;
+  padding-bottom: 10px;
+  margin-top: 60px;
+  .title {
+    text-align: center;
+    border-bottom: 1px dashed #11326f;
+    padding-bottom: 23px;
+    margin-bottom: 35px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  li:first-child {
+    margin-top: 30px;
+  }
+  ul {
+    li {
+      padding: 0;
+      margin-bottom: 30px;
+      .subtitle {
+        text-transform: uppercase;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        margin-bottom: 7px;
+      }
+      .subtitle:last-child {
+        margin-bottom: -5px !important;
+      }
+      .info {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #9aace5;
+      }
+      .info:last-child {
+        margin-bottom: -14px;
+      }
+    }
+  }
+  .side-shape {
+    position: relative;
+    &::before, &::after {
+      width: 48px;
+      height: 48px;
+      background-color: #001232;
+      border-radius: 50%;
+      top: -48px;
+    }
+    &::after {
+      left: -56px;
+    }
+    &::before{
+      right: -56px;
+    }
+  }
+}
+.text-center {
+  text-align: center !important;
+}
+.proceed-area {
+  background: #05245c;
+  padding: 30px;
+  .subtitle {
+    text-transform: uppercase;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 23px;
+}
+}
+@media (min-width: 992px) {
+  .padding-top {
+    padding-top: 120px;
+  }
+}
+@media (min-width: 768px) {
+  .checkout-widget {
+    .sign-in-area {
+      width: 100px;
+      color: $white-color;
+    }
+    .title-area {
+      width: calc(100% - 100px);
+      margin-bottom: 0;
+    }
+  }
+
+  .checkout-widget .title-area .title {
+    margin-bottom: 23px;
+  }
+}
+@media (min-width: 576px) {
+  h5 {
+    font-size: 24px;
+    margin-top: -8px;
+  }
+  h6 {
+    font-size: 18px;
+    margin-top: -5px;
+  }
+  .checkout-contact {
+    .title {
+      margin-bottom: 30px;
+    }
+  }
+  .payment-option {
+    margin-bottom: 40px;
+  }
+  .checkout-widget {
+    .checkout-card {
+      .subtitle {
+        margin-bottom: 24px;
+      }
+    }
+  }
+}

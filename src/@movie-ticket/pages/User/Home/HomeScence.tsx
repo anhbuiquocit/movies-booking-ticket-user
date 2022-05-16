@@ -11,6 +11,7 @@ export const HomeScence: FC<{ films: Array<Film>; i18n: any }> = ({
   films,
   i18n,
 }): JSX.Element => {
+  console.log("films: ", films);
   return (
     <>
       <Banner

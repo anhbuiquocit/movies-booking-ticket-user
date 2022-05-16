@@ -394,11 +394,11 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                     <div className="details-banner-content offset-lg-3">
                       <h3 className="title">{film?.name}</h3>
                       <div className="tags">
-                        <a href="#0">English</a>
-                        <a href="#0">Hindi</a>
+                        <a href="#0"></a>
+                        <a href="#0"></a>
                       </div>
                       <a href="#0" className="button">
-                        horror
+                        Đặc biệt
                       </a>
                     </div>
                   </div>
@@ -652,7 +652,7 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                         />
                       </AutoComplete>
                       {/* <CustomErrorComponent msg={errors.room} /> */}
-                      <Link
+                      {/* <Link
                         to={{
                           pathname: `${Routers.bookingTicketRouter}${film?.id}`,
                           search: queryString.stringify({
@@ -663,7 +663,7 @@ const BookingTicketScence: FC<BookintTIcketScenceProps> = ({
                         className="custom-button"
                       >
                         Tìm kiếm
-                      </Link>
+                      </Link> */}
                     </div>
                   </div>
                 </div>

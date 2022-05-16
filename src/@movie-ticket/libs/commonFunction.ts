@@ -1,3 +1,4 @@
+import { Promotion } from "./../constant/modal";
 import queryString from "query-string";
 import axios from "axios";
 import fs from "fs";
@@ -161,3 +162,38 @@ export const toBase64 = (file) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
+
+export const convertToTypeVND = (data) => {
+  return data.toLocaleString("it-IT", {
+    style: "currency",
+    currency: "VND",
+  });
+};
+
+export const calculateValueOfPromotionDiscount = (
+  totalPrice,
+  promotion: Promotion
+) => {
+  let result = 0;
+  if (promotion) {
+    result = totalPrice * (promotion.discount / 100);
+  }
+  if (result > promotion.maxDiscount) return promotion.maxDiscount;
+  // console.log("result: ", result);
+  // console.log("promotion.maxDiscount: ", promotion.maxDiscount);
+  return result;
+};
+export const calculateTotalMoneyPayment = (
+  totalTicketPrice,
+  vat,
+  promotion
+) => {
+  if (promotion) {
+    return (
+      totalTicketPrice +
+      vat * totalTicketPrice -
+      calculateValueOfPromotionDiscount(totalTicketPrice, promotion)
+    );
+  }
+  return totalTicketPrice + vat * totalTicketPrice;
+};

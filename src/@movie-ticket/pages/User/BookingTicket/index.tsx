@@ -16,6 +16,7 @@ import { popup } from "@movie-ticket/tools";
 import i18n from "@movie-ticket/translation";
 import Error from "@movie-ticket/components/Error";
 import queryString from "query-string";
+import Router from "@movie-ticket/routers/router";
 const BookingTicket = ({
   history,
   location: { search },
@@ -83,7 +84,7 @@ const BookingTicket = ({
       lineSeat7
     );
     try {
-      await userBoookingTicket({
+      const userBooking = await userBoookingTicket({
         variables: {
           data: {
             showingId: show.id,
@@ -107,6 +108,7 @@ const BookingTicket = ({
       popup.success(i18n.t("main.bookingTicket.booksucessfully"));
       setSubmitting(false);
       resetForm();
+      // history.push(`${Router.paymentRouter}${userBooking.id}`);
     } catch (err: unknown) {
       popup.error(err);
       setSubmitting(false);

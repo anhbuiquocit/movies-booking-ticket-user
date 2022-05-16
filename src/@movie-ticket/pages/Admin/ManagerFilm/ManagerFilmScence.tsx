@@ -38,6 +38,7 @@ const ManagerFilmScence: FC<ManagermentFilmScenceProps> = ({
           emailSearch: "",
           action: "",
           idUser: "",
+          filmId: "",
         }}
         onSubmit={onSubmit}
         // validationSchema={validationSchema}
@@ -60,7 +61,8 @@ const ManagerFilmScence: FC<ManagermentFilmScenceProps> = ({
                 <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                   <div className="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                     <h6 className="text-white text-capitalize ps-3">
-                      {i18n.t("main.managementUser.titleTable")}
+                      {/* {i18n.t("main.managementUser.titleTable")} */}
+                      Quản lý phim
                     </h6>
                   </div>
                 </div>
@@ -72,7 +74,6 @@ const ManagerFilmScence: FC<ManagermentFilmScenceProps> = ({
                         placeholder="email...."
                         value={values.emailSearch}
                         onChange={(e) => {
-                          
                           setFieldValue("emailSearch", e.target.value);
                         }}
                         style={{ marginBottom: "1rem" }}
@@ -122,39 +123,17 @@ const ManagerFilmScence: FC<ManagermentFilmScenceProps> = ({
                           <tr>
                             <td>
                               <div className="d-flex px-2 py-1">
-                                {/* <div>
-                                  <img
-                                    src="../assets/img/team-2.jpg"
-                                    className="avatar avatar-sm me-3 border-radius-lg"
-                                    alt="user1"
-                                  />
-                                </div> */}
                                 <div className="d-flex flex-column justify-content-center">
-                                  <h6 className="mb-0 text-sm">{`${item.name}`}</h6>
-                                  <p className="text-xs text-secondary mb-0">
-                                    {item.trailler}
-                                  </p>
+                                  {item.name}
                                 </div>
                               </div>
                             </td>
                             <td>
                               <p className="text-xs font-weight-bold mb-0">
-                                {item.actor}
-                              </p>
-                              <p className="text-xs text-secondary mb-0">
-                                Organization
+                                https://www.youtube.com/embed/{item.trailler}
                               </p>
                             </td>
                             <td className="align-middle text-center text-sm">
-                              {/* {item.active ? (
-                                <span className="badge badge-sm bg-gradient-success">
-                                  {i18n.t("main.status.active")}
-                                </span>
-                              ) : (
-                                <span className="badge badge-sm bg-gradient-secondary">
-                                  {i18n.t("main.status.notActive")}
-                                </span>
-                              )} */}
                               {item.actor}
                             </td>
                             <td className="align-middle text-center">
@@ -165,7 +144,7 @@ const ManagerFilmScence: FC<ManagermentFilmScenceProps> = ({
                             </td>
                             <td className="align-middle">
                               <Link
-                                to={Routers.get(Routers.detailUser, {
+                                to={Routers.get(Routers.updateFilm, {
                                   id: item.id,
                                 })}
                                 className="text-secondary font-weight-bold text-xs"
@@ -177,7 +156,7 @@ const ManagerFilmScence: FC<ManagermentFilmScenceProps> = ({
                               <Button
                                 onClick={() => {
                                   setFieldValue("action", ACTION.DELETE);
-                                  setFieldValue("idUser", item.id);
+                                  setFieldValue("filmId", item.id);
                                   setFieldValue("confirm", true);
                                 }}
                                 icon={<DeleteOutlineIcon />}

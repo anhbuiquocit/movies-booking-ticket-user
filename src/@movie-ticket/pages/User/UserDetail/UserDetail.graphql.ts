@@ -14,6 +14,7 @@ export const QUERY_ME = gql`
       active
       point
       phone
+      image
     }
   }
 `;
@@ -21,5 +22,11 @@ export const QUERY_ME = gql`
 export const UPDATE_USER = gql`
   mutation Mutation($where: UserWhereUniqueInput!, $data: UserUpdateInput!) {
     updateUser(where: $where, data: $data)
+  }
+`;
+
+export const GET_IMAGE_URL = gql`
+  mutation GetImageUrl($key: String!) {
+    imageUrl(key: $key)
   }
 `;

@@ -27,65 +27,37 @@ export const Header: FC<HeaderProps> = ({
         </div>
         <ul className="header_nav">
           <li className="header_nav__item">
-            <a href="#">{i18n.t("main.header.homePage")}</a>
+            <a href="/">{i18n.t("main.header.homePage")}</a>
           </li>
           <li className="header_nav__item">
-            <a href="#">
-              MOVIES{" "}
-              <i className="fa-solid fa-chevron-down icon_white-color"></i>
+            <a href="/list_film">
+              Phim{" "}
+              {/* <i className="fa-solid fa-chevron-down icon_white-color"></i> */}
             </a>
-            <ul className="sub_nav">
+            {/* <ul className="sub_nav">
               <li className="sub_nav_item">
-                <a href="#">Movies list</a>
+                <a href="/list_film">Danh sách phim</a>
               </li>
               <li className="sub_nav_item">
                 <a href="#">Ticket Plan</a>
               </li>
-              <li className="sub_nav_item">
-                <a href="#">Seat plan</a>
-              </li>
-              <li className="sub_nav_item">
-                <a href="#">Movies checkout</a>
-              </li>
-              <li className="sub_nav_item">
-                <a href="#">Movies Food</a>
-              </li>
-            </ul>
+            </ul> */}
           </li>
+         
           <li className="header_nav__item">
             <a href="#">
-              EVENTS{" "}
-              <i className="fa-solid fa-chevron-down icon_white-color"></i>
-            </a>
-            <ul className="sub_nav">
-              <li className="sub_nav_item">
-                <a href="#">List event</a>
-              </li>
-              <li className="sub_nav_item">
-                <a href="#">Speaker</a>
-              </li>
-              <li className="sub_nav_item">
-                <a href="#">Event ticket</a>
-              </li>
-              <li className="sub_nav_item">
-                <a href="#">Event Checkout</a>
-              </li>
-            </ul>
-          </li>
-          <li className="header_nav__item">
-            <a href="#">
-              ABOUT US{" "}
+              About us{" "}
               <i className="fa-solid fa-chevron-down icon_white-color"></i>
             </a>
           </li>
-          <li className="header_nav__item">
+          {/* <li className="header_nav__item">
             <a href="#">
               BLOG <i className="fa-solid fa-chevron-down icon_white-color"></i>
             </a>
-          </li>
+          </li> */}
           <li className="header_nav__item">
             <a href="#">
-              CONTACT{" "}
+              Liên hệ{" "}
               <i className="fa-solid fa-chevron-down icon_white-color"></i>
             </a>
           </li>

@@ -8,7 +8,7 @@ export interface Film {
   description?: string;
   director?: string;
   actor?: string;
-  time?: string;
+  time?: number;
   image?: string;
   imageDescription1?: string;
   imageDescription2?: string;
@@ -17,21 +17,22 @@ export interface Film {
 }
 
 export interface User {
-  id?: string;
-  createAt?: Date;
+  id: string;
+  createAt: Date;
   updateAt?: Date;
   deleteAt?: Date;
-  firstname?: string;
-  lastname?: string;
+  firstname: string;
+  lastname: string;
   birthday?: Date;
   address?: string;
-  email?: string;
-  password?: string;
-  username?: string;
+  email: string;
+  password: string;
+  username: string;
   active?: Boolean;
   point?: string;
   phone?: string;
   role?: string;
+  imageUrl?: string;
   [x: string]: any;
 }
 
@@ -55,6 +56,8 @@ export interface Showing {
   endDate?: Date;
   startTime?: Date;
   endTime?: Date;
+  film: Film;
+  room: Room;
   [x: string]: any;
 }
 
@@ -81,4 +84,56 @@ export interface Comment {
   film?: Film;
   comment?: string;
   [x: string]: any;
+}
+
+export interface Promotion {
+  id?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
+  code: string;
+  discount: number;
+  maxDiscount: number;
+  startDate?: Date;
+  endDate?: Date;
+  startTime?: Date;
+  endTime?: Date;
+  [x: string]: any;
+}
+
+export interface Seat {
+  id?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
+  name: string;
+  position: string;
+  room: Room;
+  RoomId: string;
+}
+export interface BookingItem {
+  id?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  deletedAt?: Date;
+  seat: Seat;
+  SeatId: string;
+  showing: Showing;
+  ShowingId: string;
+  Booking: Booking;
+  bookingId: string;
+}
+export interface Booking {
+  id?: string;
+  createAt?: Date;
+  updateAt?: Date;
+  deleteAt?: Date;
+  UserId: string;
+  user: User;
+  amount: number;
+  price: number;
+  PromotionId: string;
+  promotion: Promotion;
+  lineSeatMatrix: string;
+  bookingItem: Array<BookingItem>;
 }

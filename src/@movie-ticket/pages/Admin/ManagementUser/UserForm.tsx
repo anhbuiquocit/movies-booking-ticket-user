@@ -42,13 +42,10 @@ const UserForm: FC<UserFormProps> = ({
   userData,
   isDetailUser,
 }) => {
-  const dummyRequest = ({ file, onSuccess }) => {
-    setTimeout(() => {
-      onSuccess("ok");
-    }, 0);
-  };
+ 
   const validationSchema = Yup.object().shape({
     firstname: Yup.string()
+      .trim()
       .nullable()
       .required(
         `${i18n.t("main.managementUser.firstname")} ${i18n.t(
@@ -56,6 +53,7 @@ const UserForm: FC<UserFormProps> = ({
         )}`
       ),
     lastname: Yup.string()
+      .trim()
       .nullable()
       .required(
         `${i18n.t("main.managementUser.lastname")} ${i18n.t(
@@ -68,17 +66,22 @@ const UserForm: FC<UserFormProps> = ({
       )}`
     ),
     email: Yup.string()
+      .trim()
+      .nullable()
       .email()
       .required(
         `${i18n.t("main.managementUser.email")} ${i18n.t(
           "main.validation.required"
         )}`
       ),
-    username: Yup.string().required(
-      `${i18n.t("main.managementUser.username")} ${i18n.t(
-        "main.validation.required"
-      )}`
-    ),
+    username: Yup.string()
+      .trim()
+      .nullable()
+      .required(
+        `${i18n.t("main.managementUser.username")} ${i18n.t(
+          "main.validation.required"
+        )}`
+      ),
   });
   const props: any = {
     action: "//jsonplaceholder.typicode.com/posts/",

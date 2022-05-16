@@ -1,8 +1,9 @@
-import { User } from "@movie-ticket/constant/modal";
+import { Promotion } from "@movie-ticket/constant/modal";
 import React, { FC } from "react";
 import moment from "moment";
+import { convertToTypeVND } from "@movie-ticket/libs";
 import { Input, Pagination, Button, Avatar, Image } from "antd";
-import { FORMAT_DATE, ACTION } from "@movie-ticket/constant";
+import { FORMAT_DATE, ACTION, FORMAT_TIME } from "@movie-ticket/constant";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Formik, FormikHelpers, Form, ErrorMessage } from "formik";
 import ConfirmationModal from "@movie-ticket/components/ConfirmModal/ConfirmModalScence";
@@ -10,26 +11,25 @@ import Routers from "@movie-ticket/routers/router";
 import ModalLink from "@movie-ticket/components/ModalLink";
 import queryString from "query-string";
 import { Link } from "react-router-dom";
-interface ManagermentUserScenceProps {
-  users?: Array<User>;
-  i18n: any;
+interface ManagerPromotionScenceProps {
   onSubmit: (values: any, helpers: FormikHelpers<any>) => void;
-  userCount?: number;
   onChangePage: (history: any, search: any) => void;
   rowsPerPage?: number;
   history: any;
-  search: any;
+  data: Array<Promotion>;
+  i18n: any;
+  countRecord: number;
 }
-const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
-  users,
+const ManagerPromotionScence: FC<ManagerPromotionScenceProps> = ({
   i18n,
   onSubmit,
-  userCount,
   onChangePage,
   rowsPerPage,
   history,
-  search,
+  data,
+  countRecord,
 }) => {
+  console.log("dataa promotion: ", data);
   return (
     <div className="row">
       <Formik
@@ -68,7 +68,7 @@ const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
                 <div className="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                   <div className="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                     <h6 className="text-white text-capitalize ps-3">
-                      {i18n.t("main.managementUser.titleTable")}
+                      {i18n.t("main.managePromotion.title")}
                     </h6>
                   </div>
                 </div>
@@ -97,8 +97,11 @@ const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
                       </Link>
                     </div>
                     <div className="button-create-user-container">
-                      <Link to={Routers.createUser} className="btn btn--normal">
-                        {i18n.t("main.button.createUser")}
+                      <Link
+                        to={Routers.createPromotion}
+                        className="btn btn--normal"
+                      >
+                        {i18n.t("main.managePromotion.create")}
                       </Link>
                     </div>
                   </div>
@@ -109,50 +112,39 @@ const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
                       <thead>
                         <tr>
                           <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                            {i18n.t("main.managementUser.email")}
+                            {i18n.t("main.managePromotion.code")}
                           </th>
                           <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                            {i18n.t("main.managementUser.fullname")}
+                            {i18n.t("main.managePromotion.discount")}
                           </th>
                           <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                            {i18n.t("main.managementUser.status")}
+                            {i18n.t("main.managePromotion.maxDiscount")}
                           </th>
                           <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                            {i18n.t("main.managementUser.activeDate")}
+                            {i18n.t("main.managePromotion.rangeDate")}
                           </th>
                           <th className="text-secondary opacity-7"></th>
                           <th className="text-secondary opacity-7"></th>
                         </tr>
                       </thead>
                       <tbody>
-                        {users?.map((item, index) => (
+                        {data?.map((item, index) => (
                           <tr>
                             <td>
                               <div className="d-flex px-2 py-1">
-                                {/* <div>
-                                  <img
-                                    src="../assets/img/team-2.jpg"
-                                    className="avatar avatar-sm me-3 border-radius-lg"
-                                    alt="user1"
-                                  />
-                                </div> */}
-                                <Avatar
+                                {/* <Avatar
                                   src={
                                     <Image
-                                      // src="https://joeschmoe.io/api/v1/random"
                                       src={`${
                                         item.imageUrl ? item.imageUrl : ""
                                       }`}
                                       style={{ width: 32, padding: "3px 0" }}
                                     />
                                   }
-                                >
-                                  {/* {!item.imageUrl ? item.lastname : ""} */}
-                                </Avatar>
+                                ></Avatar> */}
                                 <div className="d-flex flex-column justify-content-center">
-                                  <h6 className="mb-0 text-sm">{`${item.firstname} ${item.lastname}`}</h6>
                                   <p className="text-xs text-secondary mb-0">
-                                    {item.email}
+                                    {item.code}
                                   </p>
                                 </div>
                               </div>
@@ -162,28 +154,28 @@ const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
                                 {item.role}
                               </p>
                               <p className="text-xs text-secondary mb-0">
-                                {item?.firstname + item?.lastname}
+                                {item.discount}%
                               </p>
                             </td>
                             <td className="align-middle text-center text-sm">
-                              {item.active ? (
-                                <span className="badge badge-sm bg-gradient-success">
-                                  {i18n.t("main.status.active")}
-                                </span>
-                              ) : (
-                                <span className="badge badge-sm bg-gradient-secondary">
-                                  {i18n.t("main.status.notActive")}
-                                </span>
-                              )}
+                              <p className="text-xs text-secondary mb-0">
+                                {convertToTypeVND(item.maxDiscount)}
+                              </p>
                             </td>
                             <td className="align-middle text-center">
                               <span className="text-secondary text-xs font-weight-bold">
-                                {moment(item.createAt).format(FORMAT_DATE)}
+                                {`${moment(item.startDate).format(
+                                  FORMAT_DATE
+                                )} - ${moment(item.endDate).format(
+                                  FORMAT_DATE
+                                )} ${moment(item.startTime).format(
+                                  FORMAT_TIME
+                                )}-${moment(item.endTime).format(FORMAT_TIME)}`}
                               </span>
                             </td>
                             <td className="align-middle">
                               <Link
-                                to={Routers.get(Routers.detailUser, {
+                                to={Routers.get(Routers.detailPromotion, {
                                   id: item.id,
                                 })}
                                 className="text-secondary font-weight-bold text-xs"
@@ -214,10 +206,9 @@ const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
                     </table>
                     <Pagination
                       defaultCurrent={1}
-                      total={userCount}
+                      total={countRecord}
                       pageSize={rowsPerPage}
                       className="pt-20"
-                      // onChange={onChangePage}
                       onChange={onChangePage}
                     />
                   </div>
@@ -230,5 +221,4 @@ const ManagermentUserScence: FC<ManagermentUserScenceProps> = ({
     </div>
   );
 };
-
-export default ManagermentUserScence;
+export default ManagerPromotionScence;

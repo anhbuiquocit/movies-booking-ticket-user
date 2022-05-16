@@ -15,16 +15,16 @@ interface UserLayoutProps {
 export const UserLayout = ({ history, children }: UserLayoutProps) => {
   const client = useApolloClient();
   const { loading, error, data } = useQuery(QUERY_ME);
-  // useEffect(() => {
-  //   if (error) {
-  //     if (error.graphQLErrors.length > 0 && error.graphQLErrors[0].message)
-  //       Auth.signout({
-  //         history,
-  //         client,
-  //         pathname: routers.home,
-  //       });
-  //   }
-  // }, [client, error, history]);
+  useEffect(() => {
+    if (error) {
+      if (error.graphQLErrors.length > 0 && error.graphQLErrors[0].message)
+        Auth.signout({
+          history,
+          client,
+          pathname: routers.home,
+        });
+    }
+  }, [client, error, history]);
   if (loading) return <Loading />;
   const handleUserSignOut = () => {
     Auth.signout({

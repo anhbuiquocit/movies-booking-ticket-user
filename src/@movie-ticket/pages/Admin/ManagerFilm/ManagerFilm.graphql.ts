@@ -33,3 +33,9 @@ export const CREATE_FILM = gql`
     }
   }
 `;
+
+export const DELETE_FILM = gql`
+  mutation DeleteFilmRecord($where: FilmWhereUniqueInput!) {
+    deleteFilmRecord(where: $where)
+  }
+`;

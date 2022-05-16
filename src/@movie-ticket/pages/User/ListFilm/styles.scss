@@ -17,6 +17,7 @@
   padding: 10px 38px;
   border: 1px solid rgba(163, 177, 198, 0.151);
   margin-bottom: 30px;
+  color: #fff;
   .filter-main {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
@@ -36,6 +37,10 @@
         margin-bottom: 10px;
       }
     }
+    .grid-button {
+      margin-bottom: 20px;
+
+    }
   }
   .tab-area {
     .tab-item {
@@ -47,4 +52,9 @@
       -moz-animation-duration: 1s;
     }
   }
+  .color-white {
+    color: #fff;
+    background-color: #fff;
+  }
+  
 }

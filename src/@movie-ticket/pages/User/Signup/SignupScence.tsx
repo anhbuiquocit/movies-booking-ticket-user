@@ -6,6 +6,7 @@ import {
   UserOutlined,
   MailOutlined,
 } from "@ant-design/icons";
+import Router from "@movie-ticket/routers/router";
 import Button from "@mui/material/Button";
 import { CustomErrorComponent } from "@movie-ticket/components/CustomErrorComponent";
 import AdapterJalali from "@date-io/date-fns/";
@@ -113,8 +114,8 @@ export const SignupScence = ({ onSubmit, i18n }: SignupProps): JSX.Element => {
                 <div className="padding-top padding-bottom">
                   <div className="account-area">
                     <div className="section-header-3">
-                      <span className="cate">welcome</span>
-                      <h2 className="title">to Boleto </h2>
+                      <span className="cate">Chào mừng bạn</span>
+                      <h2 className="title">đến với alpha </h2>
                     </div>
                     <Form className="account-form">
                       <div className="form-group">
@@ -293,7 +294,7 @@ export const SignupScence = ({ onSubmit, i18n }: SignupProps): JSX.Element => {
                       </div>
                     </Form>
                     <div className="option">
-                      Already have an account? <a href="sign-in.html">Login</a>
+                      Bạn đã có tài khoản? <a href={Router.userSignin}>Đăng nhập</a>
                     </div>
                     <div className="or">
                       <span>Or</span>

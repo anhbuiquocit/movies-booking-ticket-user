@@ -15,7 +15,7 @@ import * as Yup from "yup";
 interface UserDetailProps {
   onSubmit: (values: any, helper: FormikHelpers<any>) => void;
   i18n: any;
-  userData: User;
+  userData?: User;
 }
 export const UserDetailScence: FC<UserDetailProps> = ({
   onSubmit,
@@ -98,20 +98,28 @@ export const UserDetailScence: FC<UserDetailProps> = ({
                       <div className="card">
                         <div className="card-body">
                           <div className="d-flex flex-column align-items-center text-center" />
-                          <img
-                            src="https://bootdey.com/img/Content/avatar/avatar6.png"
+                          {/* <img
+                            src={userData?.imageUrl}
                             alt="Admin"
                             className="rounded-circle p-1 bg-primary"
                             width="110"
+                          /> */}
+                          <Avatar
+                            src={
+                              <Image
+                                src={userData?.imageUrl}
+                                // style={{ width: 60 }}
+                              />
+                            }
+                            size={{
+                              xs: 24,
+                              sm: 32,
+                              md: 40,
+                              lg: 64,
+                              xl: 80,
+                              xxl: 100,
+                            }}
                           />
-                          {/* <Avatar
-                          src={
-                            <Image
-                              src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                              style={{ width: 32 }}
-                            />
-                          }
-                        /> */}
                           <div className="mt-3">
                             <h4>{`${userData?.firstname} ${userData?.lastname}`}</h4>
                             {/* <p className="text-secondary mb-1">

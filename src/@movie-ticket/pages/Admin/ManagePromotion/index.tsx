@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
-
-import ManagerFilmScence from "./ManagerFilmScence";
+import React, { FC, useEffect, useState } from "react";
+import ManagerPromotionScence from "./ManagerPromotionScence";
+import { FormikHelpers } from "formik";
 import i18n from "@movie-ticket/translation";
 import { popup } from "@movie-ticket/tools";
-import { FILM_CONNECTION } from "@movie-ticket/pages/User/Home/Home.graphql";
-import Loading from "@movie-ticket/components/Loading";
-import Error from "@movie-ticket/components/Error";
-import { onChangePage } from "@movie-ticket/libs/commonFunction";
 import queryString from "query-string";
-import { useMutation, useQuery } from "@apollo/client";
-import { FormikHelpers } from "formik";
-import { DELETE_FILM } from "./ManagerFilm.graphql";
-const ManagerFilm = ({
+import { onChangePage } from "@movie-ticket/libs/commonFunction";
+import Error from "@movie-ticket/components/Error";
+import { useQuery, useLazyQuery, useMutation } from "@apollo/client";
+import Loading from "@movie-ticket/components/Loading";
+import {
+  PROMOTION_CONNECTION,
+  PROMOTION_AGGREGATE,
+  CREATE_PROMOTION,
+} from "./index.graphql";
+const PromotionManage = ({
   history,
   location: { pathname, search },
   match,
@@ -21,7 +23,6 @@ const ManagerFilm = ({
   match: any;
 }) => {
   const {
-    emailSearch = "",
     page = "1",
     rowsPerPage = "10",
   }: {
@@ -32,9 +33,7 @@ const ManagerFilm = ({
   } = queryString.parse(search);
   const first = parseInt(rowsPerPage, 10);
   const skip = (parseInt(page, 10) - 1) * parseInt(rowsPerPage, 10);
-  const [deleteFilm] = useMutation(DELETE_FILM);
-
-  const { loading, error, data, refetch } = useQuery(FILM_CONNECTION, {
+  const { loading, error, data, refetch } = useQuery(PROMOTION_CONNECTION, {
     variables: {
       where: {
         deletedAt: {
@@ -45,39 +44,32 @@ const ManagerFilm = ({
       take: first < 0 ? 10 : first,
     },
   });
-  useEffect(() => {
-    refetch();
-  }, []);
+  const { data: aggregateData } = useQuery(PROMOTION_AGGREGATE, {
+    variables: {
+      deleteAt: {
+        equals: null,
+      },
+    },
+  });
   if (loading) return <Loading />;
   if (error) return <Error />;
-
   const onSubmit = async (
     values: any,
     { setSubmitting, resetForm }: FormikHelpers<any>
   ) => {
+    
     console.log("Values: ", values);
-    const { action } = values;
-    if (action === "delete") {
-      await deleteFilm({
-        variables: {
-          where: {
-            id: values.filmId,
-          },
-        },
-      });
-    }
-    refetch();
   };
   return (
-    <ManagerFilmScence
+    <ManagerPromotionScence
       i18n={i18n}
       onSubmit={onSubmit}
+      countRecord={parseInt(aggregateData?.promotionAggregate._count._all)}
       onChangePage={onChangePage(history, search)}
       rowsPerPage={parseInt(rowsPerPage)}
-      search={search}
       history={history}
-      data={data?.films}
+      data={data?.promotionConnection}
     />
   );
 };
-export default ManagerFilm;
+export default PromotionManage;

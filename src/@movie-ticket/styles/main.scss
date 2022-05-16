@@ -70,13 +70,54 @@ a {
 
   img {
     max-width: 95%;
-    
   }
-  ul{
+  ul {
     padding: 0;
-    margin:0
+    margin: 0;
   }
   &:hover {
     border-color: var(--green);
   }
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+  color: #ffffff !important;
+  font-family: "Open Sans", sans-serif;
+}
+.w-100 {
+  width: 100% !important;
+}
+.grid-button {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  li {
+    margin-right: 20px;
+    border: 1px solid rgba(163, 177, 198, 0.151);
+    border-radius: 20px;
+    width: 50px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    padding: 0;
+    font-size: 18px;
+    color: #4c63ad;
+  }
+  .active {
+    color: #31d7a9;
+  }
+}
+.tab-menu li {
+  cursor: pointer;
 }

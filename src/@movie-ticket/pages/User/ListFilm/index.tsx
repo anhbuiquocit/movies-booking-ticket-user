@@ -1,100 +1,108 @@
-import React, { FC, useState } from "react";
-import { Banner } from "@movie-ticket/components/Banner";
-import imageBanner02 from "@movie-ticket/assets/images/banner02.jpg";
-import Search from "@movie-ticket/components/SearchContainer";
-import Autocomplete from "@mui/material/Autocomplete";
-import { TextField } from "@mui/material";
-import { MoviesItem } from "@movie-ticket/components/MoviesItem";
-export const PageListFilm: FC = (props): JSX.Element => {
+import React, { FC, useEffect, useState } from "react";
+import "./styles.scss";
+import ListFilmScence from "./ListFilmScence";
+import { useMutation, useQuery } from "@apollo/client";
+import i18n from "@movie-ticket/translation";
+import Loading from "@movie-ticket/components/Loading";
+import Error from "@movie-ticket/components/Error";
+import { FILM_CONNECTION, GET_IMAGE_URL } from "./index.graphql";
+import { Film } from "@movie-ticket/constant/modal";
+import { FormikHelpers } from "formik";
+import _ from "lodash";
+import queryString from "query-string";
+
+export const PageListFilm = ({
+  history,
+  location: { pathname, search },
+  match,
+}: {
+  history: any;
+  location: any;
+  match: any;
+}): JSX.Element => {
   // const [numberPerPage, setNumberPerPage] = useState([12, 24, 48 92])
-  const valueItemPerPage = [
-    {
-      label: 12,
-      value: 12,
-    },
-    {
-      label: 24,
-      value: 12,
-    },
-    {
-      label: 48,
-      value: 12,
-    },
-  ];
-  return (
-    <>
-      <Banner
-        image={imageBanner02}
-        title1="GET MOVIE TICKETS"
-        title2="Test banner"
-        description="Buy movie tickets in advance, find movie times watch trailer, read movie reviews and much more"
-      />
+  const {
+    orderByValue = "",
+    nameSearch = "",
+    page = "1",
+    rowsPerPage = "10",
+  }: {
+    orderBy?: string;
+    page?: string;
+    rowsPerPage?: string;
+    [x: string]: any;
+  } = queryString.parse(search);
+  console.log("orderBy: ", orderByValue);
+  console.log("nameSearch: ", nameSearch);
+  const [getImageUrl] = useMutation(GET_IMAGE_URL);
+  const [listFilm, setListFilm] = useState<Film>();
+  const { loading, error, data } = useQuery(FILM_CONNECTION, {
+    variables: {
+      where: {
+        deletedAt: {
+          equals: null,
+        },
+        OR: [
+          {
+            name: {
+              contains: nameSearch,
+            },
+          },
+        ],
+      },
 
-      <div className="search-ticket-section">
-        <Search />
-      </div>
-      <div className="movie-section padding-top padding-bottom">
-        <div className="grid">
-          <div className="grid__row">
-            <div className="grid__column-3">
-              <div className="widget-1 widget-banner">
-                <div className="widget-1-body">
-                  <a href="#">
-                    <img src={require("@movie-ticket/assets/images/adv.jpg")} alt="" />
-                  </a>
-                </div>
-              </div>
-            </div>
+      // orderBy: [
+      //   {
+      //     createdAt: "asc",
+      //   },
+      // ],
+    },
+  });
+  useEffect(() => {
+    let tempList: Array<Film> = [];
+    if (data && data.films && data.films.length > 0) {
+      for (let i = 0; i < data.films.length; i++) {
+        const tempItem: Film = Object.assign({}, data.films[i], {
+          imageUrl: null,
+        });
+        tempList.push(tempItem);
+      }
 
-            {/* List film */}
-            <div className="grid__column-9 mb-50 ">
-              <div className="filter-tab tab">
-                <div className="filter-area">
-                  <div className="filter-main">
-                    <div className="left">
-                      <div className="item">
-                        <span className="show">Show</span>
-                        <Autocomplete
-                          options={valueItemPerPage}
-                          renderInput={(params) => (
-                            <TextField {...params} label="movies" />
-                          )}
-                        />
-                      </div>
-                      <div className="item">
-                        <span className="show">Sort By:</span>
-                        <Autocomplete
-                          options={valueItemPerPage}
-                          renderInput={(params) => (
-                            <TextField {...params} label="movies" />
-                          )}
-                        />
-                      </div>
-                    </div>
-                    <ul className="grid-button tab-menu">
-                      <li>
-                        <i className="fas fa-th"></i>
-                      </li>
-                      <li>
-                        <i className="fas fa-bars"></i>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+      for (let i = 0; i < tempList.length; i++) {
+        getUrlImage(tempList[i].image, (fileUrl) => {
+          tempList[i].imageUrl = fileUrl;
+        });
+      }
+    }
+    // data.UsersConnection = tempList;
+    tempList = _.uniqBy(tempList, "id");
+    setListFilm(tempList);
+  }, [data]);
+  const getUrlImage = async (key, callback) => {
+    if (!key) callback(null);
+    try {
+      const {
+        data: { imageUrl },
+      } = await getImageUrl({
+        variables: {
+          key,
+        },
+        fetchPolicy: "network-only",
+      });
 
-                <div className="tab-area">
-                  <div className="tab-item active">
-                    <div className="movie-area mb-10">
-                      {/* push list film here */}
-                      <MoviesItem />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+      callback(imageUrl);
+    } catch (error) {
+      callback(null);
+    }
+  };
+  if (loading) return <Loading />;
+  if (error) return <Error />;
+  console.log("dataa:", data);
+  const onSubmit = (
+    values: any,
+    { setSubmitting, resetForm }: FormikHelpers<any>
+  ) => {
+    console.log("Values: ", values);
+  };
+  return <ListFilmScence data={listFilm} onSubmit={onSubmit} i18n={i18n} />;
 };

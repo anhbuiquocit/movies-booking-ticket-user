@@ -4,7 +4,12 @@
       "movies": "Phim",
       "review": "Đánh giá",
       "manager_user": "Quản lý người dùng",
-      "manager_film": "Quản lý phim"
+      "manager_film": "Quản lý phim",
+      "manager_showing": "Quản lý xuất chiếu",
+      "manager_promotion": "Quản lý khuyến mãi",
+      "home": "Trang chủ",
+      "statistical": "Thống kê",
+      "logout": "Đăng xuất"
     },
     "pageSignin": {
       "username": "Tên đăng nhập",
@@ -68,16 +73,21 @@
     },
     "managementUser": {
       "titleTable": "Quản lý người dùng",
+      "fullname": "Tên",
       "firstname": "Họ",
       "lastname": "Tên",
       "email": "email",
       "username": "Tên đăng nhập",
       "active": "Kích hoạt",
+      "status": "Trạng thái",
       "role": "Loại người dùng",
       "birthday": "Ngày sinh",
-      "password": "Mật khẩu"
+      "password": "Mật khẩu",
+      "activeDate": "Ngày kích hoạt"
     },
     "managerFilm": {
+      "createFilm": "Tạo phim",
+      "updateFilm": "Cập nhật phim",
       "name": "Tên phim",
       "description": "Mô tả",
       "trailler": "trailler",
@@ -89,7 +99,41 @@
       "image2": "Ảnh mô tả 2",
       "image3": "Ảnh mô tả 3"
     },
+    "manageShowing": {
+      "title": "Quản lý xuất chiếu",
+      "nameOfFilm": "Tên phim",
+      "room": "Phòng",
+      "date": "Ngày",
+      "time": "Thời gian",
+      "createShowing": "Tạo xuất chiếu",
+      "price": "Giá vé",
+      "startTime": "Thời gian bắt đầu"
+    },
+    "payment": {
+      "bookingSummery": "Thông tin vé",
+      "paymentOption": "Phương thức thanh toán",
+      "numberCard": "Mã số thẻ",
+      "cardOwner": "Tên chủ thẻ",
+      "ticketPrice": "Giá vé",
+      "entryTitle": "Nhập thông tin thẻ của bạn",
+      "date": "Ngày",
+      "price": "Giá vé",
+      "position": "Vị trí ghế",
+      "totalTicketPrice": "Giá",
+      "totalMoneyPayment": "Tổng tiền thanh toán",
+      "promotion": "Khuyến mãi",
+      "time": "Thời gian"
+    },
+    "managePromotion": {
+      "title": "Quản lý khuyến mãi",
+      "create": "Tạo khuyến mãi",
+      "code": "Mã code",
+      "discount": "Khuyến mãi",
+      "maxDiscount": "Khuyến mãi tối đa",
+      "rangeDate": "Thời gian"
+    },
     "confirmMessage": "Bạn chắc chắn chứ?",
+    "updateSuccessful": "Cập nhật thành công",
     "button": {
       "back": "Trở về",
       "createUser": "Tạo người dùng",
@@ -98,7 +142,12 @@
       "update": "Sửa",
       "delete": "Xóa",
       "search": "Tìm kiếm",
-      "bookingTicket": "Đặt vé"
+      "bookingTicket": "Đặt vé",
+      "createShowing": "Tạo xuất chiếu",
+      "pay": "Thanh toán"
+    },
+    "listFilm": {
+      "noRecord": "Không có bản ghi nào"
     },
     "status": {
       "active": "Đã kích hoạt",

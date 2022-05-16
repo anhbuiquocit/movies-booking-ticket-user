@@ -38,7 +38,11 @@ export const FILMS = gql`
 
 export const USER_BOOKING_TICKET = gql`
   mutation UserBookingTicket($data: BookingItemInput!) {
-    userBookingTicket(data: $data)
+    userBookingTicket(data: $data) {
+      id
+      createdAt
+      updatedAt
+    }
   }
 `;
 
